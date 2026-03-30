@@ -1,0 +1,16 @@
+# Core Framework
+django>=5.0
+
+# Database & Images
+Pillow
+
+# UI & Forms (Freedom Chapel Styling)
+django-crispy-forms
+crispy-bootstrap5
+
+# Environment variables (Best practice for security)
+python-dotenv
+
+# Deployment (Ready for when you go live)
+gunicorn
+whitenoise
