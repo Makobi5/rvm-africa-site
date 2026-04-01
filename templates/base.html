@@ -31,6 +31,48 @@
         
         .card-ministry { border: none; transition: 0.3s; }
         .card-ministry:hover { transform: translateY(-10px); }
+
+        .founder-image {
+        border-radius: 15px;
+        box-shadow: 20px 20px 0px var(--sky-blue); /* This creates a nice modern offset border */
+        max-width: 100%;
+        height: auto;
+    }
+
+        /* Entrance Animation */
+    @keyframes zoomInEntrance {
+        from {
+            opacity: 0;
+            transform: scale(0.8); /* Starts small */
+        }
+        to {
+            opacity: 1;
+            transform: scale(1); /* Ends at normal size */
+        }
+    }
+
+    .animate-zoom {
+        animation: zoomInEntrance 1.2s ease-out forwards;
+    }
+
+    /* Hover Effect */
+    .founder-image-container {
+        overflow: hidden; /* Keeps the zoom inside the box */
+        border-radius: 15px;
+        box-shadow: 20px 20px 0px var(--sky-blue);
+        display: inline-block;
+    }
+
+    .founder-image {
+        transition: transform 0.5s ease; /* Smooth transition for hover */
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .founder-image:hover {
+        transform: scale(1.08); /* Zooms in slightly on hover */
+    }
     </style>
 </head>
 <body>

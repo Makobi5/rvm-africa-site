@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
@@ -10,18 +10,36 @@
     </div>
 </section>
 
-<!-- About/Intro Section -->
-<section class="py-5 bg-light">
+<!-- Who We Are / Founders Section -->
+<section class="py-5">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h2 style="color: var(--navy-blue);">Who We Are</h2>
-                <p>Ronnie and Vero Ministries Africa is dedicated to supporting vulnerable children, providing tuition, medical welfare, and spiritual guidance. We believe in total transformation through Christlikeness and skill acquisition.</p>
+        <div class="row align-items-center py-5">
+            <!-- Text Side -->
+            <div class="col-md-6 order-2 order-md-1">
+                <h6 class="text-uppercase fw-bold" style="color: var(--sky-blue); letter-spacing: 2px;">Who We Are</h6>
+                <h2 class="display-5 fw-bold mb-4" style="color: var(--navy-blue);">Rev. Ronnie & Veronica Baraza</h2>
+                <p class="lead text-muted">
+                    Ronnie and Vero Ministries Africa is a holistic ministry dedicated to the spiritual and physical transformation of communities. 
+                </p>
+                <p>
+                    We support vulnerable and orphaned children with tuition, meals, and medical welfare. Our heart is in <strong>winning souls</strong> through crusades, counseling, and training leaders into Christlikeness.
+                </p>
+                <p>
+                    Beyond spiritual growth, we believe in <strong>economic empowerment</strong>. We train community members in practical skills like Tailoring, Music, Poultry Farming, and Fish Farming to ensure a self-sustaining future.
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'about' %}" class="btn btn-outline-primary px-4 py-2">Read Our Full Story</a>
+                </div>
             </div>
-            <div class="col-md-6">
-                <!-- Placeholder for Rev. Ronnie & Vero photo -->
-                <div class="bg-secondary text-white p-5 text-center">Founder Photo Here</div>
+
+          <!-- Image Side -->
+        <div class="col-md-6 order-1 order-md-2 mb-5 mb-md-0 text-center">
+            <div class="ps-md-5 animate-zoom"> <!-- Added animation class here -->
+                <div class="founder-image-container"> <!-- New container -->
+                    <img src="{% static 'images/founders.jpg' %}" alt="Rev. Ronnie and Veronica Baraza" class="founder-image">
+                </div>
             </div>
+        </div>
         </div>
     </div>
 </section>
