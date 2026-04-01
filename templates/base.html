@@ -1,93 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ronnie & Vero Ministries Africa</title>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --sky-blue: #00B4D8;
-            --navy-blue: #003049;
-            --dim-red: #8B0000; /* As requested: a dim/dark red */
-        }
-        
-        .navbar { background-color: #fff; border-bottom: 3px solid var(--sky-blue); }
-        .nav-link { color: var(--navy-blue) !important; font-weight: 600; }
-        
-        .hero-section {
-            background: linear-gradient(rgba(0,48,73,0.7), rgba(0,48,73,0.7)), url('/static/images/hero.jpg');
-            background-size: cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            color: white;
-        }
-
-        .btn-primary { background-color: var(--sky-blue); border: none; }
-        .btn-primary:hover { background-color: var(--navy-blue); }
-        .btn-donate { background-color: var(--dim-red); color: white; border-radius: 20px; padding: 10px 25px; }
-        
-        .card-ministry { border: none; transition: 0.3s; }
-        .card-ministry:hover { transform: translateY(-10px); }
-
-        .founder-image {
-        border-radius: 15px;
-        box-shadow: 20px 20px 0px var(--sky-blue); /* This creates a nice modern offset border */
-        max-width: 100%;
-        height: auto;
-    }
-
-        /* Entrance Animation */
-    @keyframes zoomInEntrance {
-        from {
-            opacity: 0;
-            transform: scale(0.8); /* Starts small */
-        }
-        to {
-            opacity: 1;
-            transform: scale(1); /* Ends at normal size */
-        }
-    }
-
-    .animate-zoom {
-        animation: zoomInEntrance 1.2s ease-out forwards;
-    }
-
-    /* Hover Effect */
-    .founder-image-container {
-        overflow: hidden; /* Keeps the zoom inside the box */
-        border-radius: 15px;
-        box-shadow: 20px 20px 0px var(--sky-blue);
-        display: inline-block;
-    }
-
-    .founder-image {
-        transition: transform 0.5s ease; /* Smooth transition for hover */
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .founder-image:hover {
-        transform: scale(1.08); /* Zooms in slightly on hover */
-    }
-    </style>
+    
+    <!-- OUR NEW EXTERNAL STYLE -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <!-- Navbar (Freedom Chapel style) -->
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#" style="color: var(--navy-blue); font-weight: bold;">RVM AFRICA</a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <span style="color: var(--sky-blue);">RVM</span> <span style="color: var(--navy-blue);">AFRICA</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Ministries</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Farming</a></li>
                     <li class="nav-item ms-lg-3"><a class="btn btn-donate" href="#">DONATE</a></li>
@@ -98,12 +41,53 @@
 
     {% block content %}{% endblock %}
 
-    <!-- Footer -->
-    <footer class="py-5" style="background: var(--navy-blue); color: white;">
-        <div class="container text-center">
-            <p>&copy; 2024 Ronnie and Vero Ministries Africa. All Rights Reserved.</p>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">About Us</h5>
+                    <p>A holistic ministry dedicated to spiritual growth and community empowerment in East Africa.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Location</h5>
+                    <p>Njeru, Kayunga Road<br>Uganda</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Contact</h5>
+                    <p>Email: info@rvmafrica.org<br>Phone: (+256) 7XX XXX XXX</p>
+                </div>
+                <div class="col-md-3 mb-4 text-md-end">
+                    <h5 class="footer-title">Follow Us</h5>
+                    <div class="d-flex justify-content-md-end gap-3">
+                        <a href="#" class="text-white fs-4"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Sub Footer (Red Bar) -->
+    <div class="sub-footer">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="{% url 'about' %}">ABOUT US</a>
+                    <a href="#">LOCATIONS</a>
+                    <a href="#">MINISTRIES</a>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    &copy; 2024 Ronnie and Vero Ministries Africa
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/256XXXXXXXXX" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
