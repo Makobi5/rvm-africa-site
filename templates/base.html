@@ -17,50 +17,67 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <style>
-        /* ---- MEGA MENU OVERRIDES ---- */
+        /* ---- MEGA MENU ---- */
 
-        /* Base mega menu — shared by About and Ministries */
+        /* Navbar container is the positioning parent */
+        .navbar .container {
+            position: relative;
+        }
+
+        /* All mega menus: anchored to left of navbar container */
         .dropdown-menu.mega-menu {
-            min-width: 600px !important;
-            background-color: var(--navy-blue) !important;
-            border: none;
-            border-top: 4px solid var(--sky-blue);
-            border-radius: 0;
-            padding: 28px !important;
-            box-shadow: 0px 15px 35px rgba(0,0,0,0.4);
-            /* Anchor to RIGHT edge of the dropdown trigger */
-            left: auto !important;
-            right: 0 !important;
+            display: none;
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: auto !important;
             transform: none !important;
+            min-width: 560px;
+            background-color: var(--navy-blue) !important;
+            border: none !important;
+            border-top: 4px solid var(--sky-blue) !important;
+            border-radius: 0 !important;
+            padding: 28px 28px 20px !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            z-index: 9999;
         }
 
-        /* Ministries menu needs extra width for 4 columns */
+        /* Show on Bootstrap's .show class */
+        .dropdown-menu.mega-menu.show {
+            display: block !important;
+        }
+
+        /* Ministries menu: full width of navbar container */
         .dropdown-menu.mega-menu.ministries-menu {
-            min-width: 880px !important;
-            /* Push it further left so all 4 columns are visible */
-            right: -60px !important;
-        }
-
-        /* Force row to stay horizontal */
-        .mega-menu .row {
-            margin: 0;
-            display: flex !important;
-            flex-wrap: nowrap !important;
+            left: 0 !important;
+            right: 0 !important;
+            min-width: 0;
             width: 100%;
         }
 
-        /* Equal 4-column widths */
-        .mega-menu .col-min {
-            flex: 0 0 25% !important;
-            max-width: 25% !important;
-            padding: 0 14px;
+        /* ---- Inner grid: pure flexbox, NOT Bootstrap .row/.col ---- */
+        .mega-menu-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            width: 100%;
+            gap: 0;
         }
 
-        /* Equal 2-column widths for About */
-        .mega-menu .col-md-6 {
-            flex: 0 0 50% !important;
-            max-width: 50% !important;
-            padding: 0 14px;
+        .mega-menu-col {
+            flex: 1 1 0 !important;
+            min-width: 0;
+            padding: 0 16px;
+            border-left: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .mega-menu-col:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .mega-menu-col:last-child {
+            padding-right: 0;
         }
 
         /* Column heading */
@@ -92,24 +109,21 @@
             flex-shrink: 0;
         }
 
-        /* Key item links */
+        /* Menu item links */
         .mega-menu-item {
             color: #ffffff !important;
             text-decoration: none;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 9px;
             padding: 9px 0 !important;
             font-size: 0.88rem;
             font-weight: 600;
             border-bottom: 1px solid rgba(255,255,255,0.06);
             transition: all 0.25s ease;
-            white-space: normal;
         }
 
-        .mega-menu-item:last-child {
-            border-bottom: none;
-        }
+        .mega-menu-item:last-child { border-bottom: none; }
 
         .mega-menu-item i {
             color: var(--sky-blue);
@@ -117,32 +131,26 @@
             width: 14px;
             text-align: center;
             flex-shrink: 0;
+            margin-top: 3px;
         }
 
-        .mega-menu-item:hover {
-            color: var(--sky-blue) !important;
-            padding-left: 6px !important;
-        }
+        .mega-menu-item:hover { color: var(--sky-blue) !important; padding-left: 6px !important; }
+        .mega-menu-item:hover i { color: #ffffff; }
 
-        .mega-menu-item:hover i {
-            color: #ffffff;
-        }
-
-        /* Mobile: stack columns */
+        /* Mobile */
         @media (max-width: 991px) {
             .dropdown-menu.mega-menu,
             .dropdown-menu.mega-menu.ministries-menu {
-                min-width: 100% !important;
-                left: 0 !important;
-                right: 0 !important;
-                transform: none !important;
+                position: static !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                box-shadow: none;
             }
-            .mega-menu .row { flex-wrap: wrap !important; }
-            .mega-menu .col-min,
-            .mega-menu .col-md-6 {
+            .mega-menu-grid { flex-wrap: wrap !important; }
+            .mega-menu-col {
                 flex: 0 0 100% !important;
-                max-width: 100% !important;
-                margin-bottom: 20px;
+                border-left: none !important;
+                padding: 0 0 16px 0 !important;
             }
             .dropdown-column-title { white-space: normal; }
         }
@@ -167,9 +175,9 @@
                     <!-- CONNECT SUBMENU -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Connect</a>
-                        <ul class="dropdown-menu mega-menu p-4">
-                            <div class="row">
-                                <div class="col-md-6">
+                        <ul class="dropdown-menu mega-menu">
+                            <div class="mega-menu-grid">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-handshake"></i> Get Involved
                                     </h6>
@@ -177,7 +185,7 @@
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Volunteer with Us</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Partner &amp; Support</a>
                                 </div>
-                                <div class="col-md-6 border-start border-secondary border-opacity-25">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-globe"></i> Stay Connected
                                     </h6>
@@ -192,9 +200,9 @@
                     <!-- ABOUT SUBMENU -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
-                        <ul class="dropdown-menu mega-menu p-4">
-                            <div class="row">
-                                <div class="col-md-6">
+                        <ul class="dropdown-menu mega-menu">
+                            <div class="mega-menu-grid">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-users"></i> Who We Are
                                     </h6>
@@ -202,7 +210,7 @@
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Rev. Ronnie &amp; Veronica</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Statement of Faith</a>
                                 </div>
-                                <div class="col-md-6 border-start border-secondary border-opacity-25">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-map-marker-alt"></i> Our Presence
                                     </h6>
@@ -217,11 +225,11 @@
                     <!-- MINISTRIES SUBMENU -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ministries</a>
-                        <ul class="dropdown-menu mega-menu ministries-menu p-4">
-                            <div class="row">
+                        <ul class="dropdown-menu mega-menu ministries-menu">
+                            <div class="mega-menu-grid">
 
                                 <!-- COLUMN 1: Children & Youth -->
-                                <div class="col-min">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-child"></i> Children &amp; Youth
                                     </h6>
@@ -233,7 +241,7 @@
                                 </div>
 
                                 <!-- COLUMN 2: Spiritual Outreach -->
-                                <div class="col-min border-start border-secondary border-opacity-25">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-church"></i> Spiritual Outreach
                                     </h6>
@@ -245,7 +253,7 @@
                                 </div>
 
                                 <!-- COLUMN 3: School -->
-                                <div class="col-min border-start border-secondary border-opacity-25">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-school"></i> School
                                     </h6>
@@ -257,7 +265,7 @@
                                 </div>
 
                                 <!-- COLUMN 4: Economic Empowerment -->
-                                <div class="col-min border-start border-secondary border-opacity-25">
+                                <div class="mega-menu-col">
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-seedling"></i> Economic Empowerment
                                     </h6>
@@ -272,7 +280,6 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
                     <li class="nav-item"><a class="nav-link text-danger fw-semibold" href="#">Prayer Request</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
                     <li class="nav-item ms-lg-3">
