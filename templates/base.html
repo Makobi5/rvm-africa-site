@@ -15,10 +15,142 @@
     
     <!-- OUR NEW EXTERNAL STYLE -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        /* ---- MEGA MENU OVERRIDES ---- */
+
+        /* Base mega menu — shared by About and Ministries */
+        .dropdown-menu.mega-menu {
+            min-width: 600px !important;
+            background-color: var(--navy-blue) !important;
+            border: none;
+            border-top: 4px solid var(--sky-blue);
+            border-radius: 0;
+            padding: 28px !important;
+            box-shadow: 0px 15px 35px rgba(0,0,0,0.4);
+            /* Anchor to RIGHT edge of the dropdown trigger */
+            left: auto !important;
+            right: 0 !important;
+            transform: none !important;
+        }
+
+        /* Ministries menu needs extra width for 4 columns */
+        .dropdown-menu.mega-menu.ministries-menu {
+            min-width: 880px !important;
+            /* Push it further left so all 4 columns are visible */
+            right: -60px !important;
+        }
+
+        /* Force row to stay horizontal */
+        .mega-menu .row {
+            margin: 0;
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            width: 100%;
+        }
+
+        /* Equal 4-column widths */
+        .mega-menu .col-min {
+            flex: 0 0 25% !important;
+            max-width: 25% !important;
+            padding: 0 14px;
+        }
+
+        /* Equal 2-column widths for About */
+        .mega-menu .col-md-6 {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+            padding: 0 14px;
+        }
+
+        /* Column heading */
+        .dropdown-column-title {
+            color: #ffffff !important;
+            font-size: 0.72rem !important;
+            font-weight: 800 !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 10px;
+            white-space: nowrap;
+        }
+
+        .dropdown-column-title i {
+            background-color: var(--sky-blue);
+            color: #003049;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* Key item links */
+        .mega-menu-item {
+            color: #ffffff !important;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 0 !important;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.25s ease;
+            white-space: normal;
+        }
+
+        .mega-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .mega-menu-item i {
+            color: var(--sky-blue);
+            font-size: 0.78rem;
+            width: 14px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .mega-menu-item:hover {
+            color: var(--sky-blue) !important;
+            padding-left: 6px !important;
+        }
+
+        .mega-menu-item:hover i {
+            color: #ffffff;
+        }
+
+        /* Mobile: stack columns */
+        @media (max-width: 991px) {
+            .dropdown-menu.mega-menu,
+            .dropdown-menu.mega-menu.ministries-menu {
+                min-width: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+            }
+            .mega-menu .row { flex-wrap: wrap !important; }
+            .mega-menu .col-min,
+            .mega-menu .col-md-6 {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+                margin-bottom: 20px;
+            }
+            .dropdown-column-title { white-space: normal; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header / Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
@@ -27,13 +159,125 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Ministries</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Farming</a></li>
-                    <li class="nav-item ms-lg-3"><a class="btn btn-donate" href="#">DONATE</a></li>
+
+                    <!-- CONNECT SUBMENU -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Connect</a>
+                        <ul class="dropdown-menu mega-menu p-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-handshake"></i> Get Involved
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Join a Community Group</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Volunteer with Us</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Partner &amp; Support</a>
+                                </div>
+                                <div class="col-md-6 border-start border-secondary border-opacity-25">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-globe"></i> Stay Connected
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Newsletter Sign-up</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Social Media</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Events Calendar</a>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <!-- ABOUT SUBMENU -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu mega-menu p-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-users"></i> Who We Are
+                                    </h6>
+                                    <a class="mega-menu-item" href="{% url 'about' %}"><i class="fas fa-angle-right"></i> Our Story &amp; Vision</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Rev. Ronnie &amp; Veronica</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Statement of Faith</a>
+                                </div>
+                                <div class="col-md-6 border-start border-secondary border-opacity-25">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-map-marker-alt"></i> Our Presence
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Njeru Church</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Global Partners</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Contact Locations</a>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <!-- MINISTRIES SUBMENU -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ministries</a>
+                        <ul class="dropdown-menu mega-menu ministries-menu p-4">
+                            <div class="row">
+
+                                <!-- COLUMN 1: Children & Youth -->
+                                <div class="col-min">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-child"></i> Children &amp; Youth
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Orphan &amp; Child Support</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Tuition Assistance</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Meals &amp; Nutrition</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Children's Camps</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Youth Discipleship</a>
+                                </div>
+
+                                <!-- COLUMN 2: Spiritual Outreach -->
+                                <div class="col-min border-start border-secondary border-opacity-25">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-church"></i> Spiritual Outreach
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Church &amp; Crusades</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Conferences &amp; Seminars</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Leadership Training</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Counselling</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Medical Missions</a>
+                                </div>
+
+                                <!-- COLUMN 3: School -->
+                                <div class="col-min border-start border-secondary border-opacity-25">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-school"></i> School
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Primary Education</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Fees &amp; Enrolment Support</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> School Meals Programme</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Tailoring School</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Music Academy</a>
+                                </div>
+
+                                <!-- COLUMN 4: Economic Empowerment -->
+                                <div class="col-min border-start border-secondary border-opacity-25">
+                                    <h6 class="dropdown-column-title">
+                                        <i class="fas fa-seedling"></i> Economic Empowerment
+                                    </h6>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Poultry Farming</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Fish Farming</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Tailoring &amp; Crafts</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Skills Workshops</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Income Generation</a>
+                                </div>
+
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger fw-semibold" href="#">Prayer Request</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-donate" href="#">DONATE</a>
+                    </li>
                 </ul>
             </div>
         </div>
