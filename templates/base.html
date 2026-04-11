@@ -358,15 +358,109 @@
     </footer>
 
     <!-- Sub Footer (Red Bar) -->
+    <style>
+        .sf-nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+        .sf-item { position: relative; }
+        .sf-item > a {
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .sf-item > a:hover { background: rgba(255,255,255,0.12); border-radius: 4px; }
+        .sf-item > a .sf-arrow { font-size: 0.55rem; opacity: 0.75; transition: transform 0.2s; }
+        .sf-item:hover > a .sf-arrow { transform: rotate(180deg); }
+
+        /* Dropdown panel — opens UPWARD */
+        .sf-dropdown {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: #1a1a2e;
+            min-width: 210px;
+            border-top: 3px solid var(--sky-blue);
+            border-radius: 4px 4px 0 0;
+            padding: 8px 0;
+            z-index: 9999;
+            box-shadow: 0 -8px 24px rgba(0,0,0,0.45);
+        }
+        .sf-item:hover .sf-dropdown { display: block; }
+        .sf-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 18px;
+            color: #d0d0d0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .sf-dropdown a:last-child { border-bottom: none; }
+        .sf-dropdown a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.07);
+            padding-left: 24px;
+        }
+        .sf-dropdown a i { color: var(--sky-blue); font-size: 0.7rem; width: 12px; flex-shrink: 0; }
+    </style>
+
     <div class="sub-footer">
-        <div class="container text-center text-md-start">
-            <div class="row">
+        <div class="container">
+            <div class="row align-items-center">
                 <div class="col-md-8">
-                    <a href="{% url 'about' %}">ABOUT US</a>
-                    <a href="#">LOCATIONS</a>
-                    <a href="#">MINISTRIES</a>
+                    <nav class="sf-nav">
+
+                        <!-- ABOUT US -->
+                        <div class="sf-item">
+                            <a href="{% url 'about' %}">
+                                ABOUT US <i class="fas fa-chevron-up sf-arrow"></i>
+                            </a>
+                            <div class="sf-dropdown">
+                                <a href="{% url 'about' %}#who-we-are">
+                                    <i class="fas fa-angle-right"></i> Who We Are
+                                </a>
+                                <a href="{% url 'about' %}#our-presence">
+                                    <i class="fas fa-angle-right"></i> Our Presence
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- LOCATIONS -->
+                        <div class="sf-item">
+                            <a href="#">LOCATIONS <i class="fas fa-chevron-up sf-arrow"></i></a>
+                            <div class="sf-dropdown">
+                                <a href="#"><i class="fas fa-angle-right"></i> New Hope Church — Kirugu</a>
+                                <a href="#"><i class="fas fa-angle-right"></i> New Hope Foundation School</a>
+                                <a href="#"><i class="fas fa-angle-right"></i> Kirugu Fish Farm</a>
+                            </div>
+                        </div>
+
+                        <!-- MINISTRIES -->
+                        <div class="sf-item">
+                            <a href="#">MINISTRIES <i class="fas fa-chevron-up sf-arrow"></i></a>
+                            <div class="sf-dropdown">
+                                <a href="#"><i class="fas fa-angle-right"></i> Children &amp; Youth</a>
+                                <a href="#"><i class="fas fa-angle-right"></i> Spiritual Outreach</a>
+                                <a href="#"><i class="fas fa-angle-right"></i> School</a>
+                                <a href="#"><i class="fas fa-angle-right"></i> Economic Empowerment</a>
+                            </div>
+                        </div>
+
+                    </nav>
                 </div>
-                <div class="col-md-4 text-md-end">
+                <div class="col-md-4 text-md-end" style="color: rgba(255,255,255,0.65); font-size: 0.78rem;">
                     &copy; 2025 Ronnie and Vero Ministries Africa
                 </div>
             </div>
