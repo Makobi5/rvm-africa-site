@@ -1,70 +1,147 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container text-center">
-        <h1 class="display-3 fw-bold">Transforming Lives, <br>Building Communities</h1>
-        <p class="lead">Spiritual Growth | Economic Empowerment | Education</p>
-        <a href="#" class="btn btn-primary btn-lg mt-3">Learn More</a>
-    </div>
-</section>
 
-<!-- Who We Are / Founders Section -->
-<section class="py-5 bg-white">
+{% block content %}
+<!-- ==========================================================
+     DYNAMIC HERO SLIDER
+     ========================================================== -->
+<div id="heroCarousel" class="carousel slide carousel-fade hero-slider shadow-lg" data-bs-ride="carousel">
+    
+    <!-- Optional Indicators (Small dots at bottom) -->
+    <div class="carousel-indicators">
+        {% for slide in slides %}
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" 
+                class="{% if forloop.first %}active{% endif %}"></button>
+        {% endfor %}
+    </div>
+
+    <div class="carousel-inner">
+        {% for slide in slides %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="5000">
+            <!-- The Slide Background Image -->
+            <div class="slide-image" style="background-image: url('{{ slide.image.url }}');">
+                
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                    <div class="animate-zoom">
+                        
+                        {% if slide.is_news_event %}
+                            <!-- 1. NEWS / EVENT MODE: Shows specific title & summary from admin -->
+                            {% if slide.subtitle %}
+                                <span class="badge bg-info mb-3 px-3 py-2 text-uppercase" style="letter-spacing: 2px;">{{ slide.subtitle }}</span>
+                            {% endif %}
+                            
+                            <h1 class="display-3 fw-bold text-uppercase mb-3">{{ slide.title }}</h1>
+                            <p class="lead mx-auto mb-4" style="max-width: 800px; opacity: 0.95; font-weight: 500;">
+                                {{ slide.description }}
+                            </p>
+                            <a href="{{ slide.button_url }}" class="btn btn-donate px-5 py-3 shadow">
+                                {{ slide.button_text }}
+                            </a>
+
+                        {% else %}
+                            <!-- 2. BRANDING MODE: Shows the original message from the beginning -->
+                            <h1 class="display-2 fw-bold text-uppercase mb-2" style="letter-spacing: -1px;">
+                                Transforming Lives, <br>Building Communities
+                            </h1>
+                            <p class="lead fw-semibold mb-4" style="letter-spacing: 2px; opacity: 0.95;">
+                                SPIRITUAL GROWTH | ECONOMIC EMPOWERMENT | EDUCATION
+                            </p>
+                            <a href="#who-we-are" class="btn btn-primary btn-lg px-5 py-3 rounded-0 fw-bold shadow">
+                                LEARN MORE
+                            </a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <!-- Fallback if database is empty -->
+        <div class="carousel-item active">
+            <div class="slide-image" style="background-color: var(--navy-blue);">
+                <div class="carousel-caption">
+                    <h1 class="display-3 fw-bold">RVM AFRICA</h1>
+                    <p>Add slides in the admin panel to begin.</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- ==========================================================
+     WHO WE ARE SECTION (7/5 Split)
+     ========================================================== -->
+<section id="who-we-are" class="py-5 bg-white border-bottom">
     <div class="container">
         <div class="row align-items-center py-5">
-            <!-- Text Side (Now 7 columns wide) -->
+            <!-- Text Content -->
             <div class="col-md-7 order-2 order-md-1">
                 <h6 class="text-uppercase fw-bold mb-3" style="color: var(--sky-blue); letter-spacing: 2px;">Who We Are</h6>
                 <h2 class="display-5 fw-bold mb-4" style="color: var(--navy-blue);">Rev. Ronnie & <br>Veronica Baraza</h2>
                 <p class="lead text-muted mb-4">
-                    Ronnie and Vero Ministries Africa is a holistic mission dedicated to the spiritual and physical transformation of communities. 
+                    Ronnie and Vero Ministries Africa is a holistic mission dedicated to the spiritual and physical transformation of communities across East Africa.
                 </p>
-                <div class="pe-md-5"> <!-- Added padding on the right for better readability -->
-                    <p>We support vulnerable and orphaned children with <strong>tuition, meals, and medical welfare</strong>. Our heart is in winning souls through crusades, counseling, and training leaders into Christlikeness.</p>
-                    <p>Beyond spiritual growth, we believe in <strong>economic empowerment</strong>. We train community skills through Tailoring, Music, Poultry Farming, and Fish Farming.</p>
+                <div class="pe-md-5">
+                    <p class="mb-3">We support vulnerable and orphaned children with <strong>tuition, meals, and medical welfare</strong>. Our heart is in winning souls through crusades, counseling, and training leaders into Christlikeness.</p>
+                    <p class="mb-4">Beyond spiritual growth, we believe in <strong>economic empowerment</strong>. We train community skills through Tailoring, Music, Poultry Farming, and Fish Farming to ensure a self-sustaining future for all.</p>
                 </div>
-                <div class="mt-4">
-                    <a href="{% url 'about' %}" class="btn btn-outline-primary px-4 py-2" style="border-radius: 0; font-weight: bold;">Read Our Full Story</a>
+                <div class="mt-2">
+                    <a href="{% url 'about' %}" class="btn btn-outline-primary px-4 py-2 fw-bold rounded-0">READ OUR FULL STORY</a>
                 </div>
             </div>
 
-            <!-- Image Side (Now 5 columns wide) -->
+            <!-- Founders Photo -->
             <div class="col-md-5 order-1 order-md-2 mb-5 mb-md-0 text-center">
                 <div class="animate-zoom">
                     <div class="founder-image-container">
-                        <img src="{% static 'images/founders.jpg' %}" alt="Rev. Ronnie and Veronica Baraza" class="founder-image">
+                        <img src="{% static 'images/founders.jpg' %}" alt="Rev. Ronnie and Veronica Baraza" class="founder-image shadow-lg">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Ministries Grid -->
-<section class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5" style="color: var(--navy-blue);">Our Impact & Ministries</h2>
+
+<!-- ==========================================================
+     MINISTRIES & IMPACT GRID
+     ========================================================== -->
+<section class="py-5" style="background-color: #fcfcfc;">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h6 class="text-uppercase fw-bold" style="color: var(--sky-blue); letter-spacing: 1px;">Our Impact</h6>
+            <h2 class="display-6 fw-bold" style="color: var(--navy-blue);">MINISTRIES & PROJECTS</h2>
+            <div class="mx-auto mt-2" style="width: 50px; height: 3px; background-color: var(--dim-red);"></div>
+        </div>
+
         <div class="row g-4">
             {% for ministry in ministries %}
-            <div class="col-md-4">
-                <div class="card card-ministry shadow-sm h-100">
+            <div class="col-lg-4 col-md-6">
+                <div class="card card-ministry shadow-sm h-100 border-0 rounded-0">
                     {% if ministry.image %}
-                        <img src="{{ ministry.image.url }}" class="card-img-top" alt="{{ ministry.title }}" style="height: 200px; object-fit: cover;">
+                        <img src="{{ ministry.image.url }}" class="card-img-top rounded-0" alt="{{ ministry.title }}" style="height: 240px; object-fit: cover;">
                     {% else %}
-                        <div class="bg-light text-center py-5">No Image</div>
+                        <div class="bg-light text-center py-5 text-muted border-bottom" style="height: 240px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-image fa-3x opacity-25"></i>
+                        </div>
                     {% endif %}
-                    <div class="card-body">
-                        <span class="badge mb-2" style="background-color: var(--sky-blue);">{{ ministry.category.name }}</span>
-                        <h4 style="color: var(--navy-blue);">{{ ministry.title }}</h4>
-                        <p class="text-muted">{{ ministry.description|truncatewords:20 }}</p>
-                        <a href="#" class="text-decoration-none" style="color: var(--dim-red); font-weight: bold;">Read More →</a>
+                    <div class="card-body p-4">
+                        <span class="badge mb-2 px-3 py-2 text-uppercase" style="background-color: var(--sky-blue); font-size: 0.65rem;">{{ ministry.category.name }}</span>
+                        <h4 class="fw-bold mb-3" style="color: var(--navy-blue);">{{ ministry.title }}</h4>
+                        <p class="text-muted small mb-4">{{ ministry.description|truncatewords:22 }}</p>
+                        <a href="#" class="text-decoration-none fw-bold" style="color: var(--dim-red); font-size: 0.85rem;">
+                            LEARN MORE <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-            {% empty %}
-            <div class="col-12 text-center">
-                <p>No ministries added yet. Go to the Admin panel to add some!</p>
             </div>
             {% endfor %}
         </div>

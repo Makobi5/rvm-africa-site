@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from .models import Ministry, Event
+from .models import Ministry, Event, HeroSlide
 
 def home(request):
-    # Fetch all ministries from the database
+    slides = HeroSlide.objects.filter(is_active=True)
     ministries = Ministry.objects.all()
-    # Fetch the 3 most recent events
     events = Event.objects.all().order_by('-date')[:3]
     
     context = {
+        'slides': slides,
         'ministries': ministries,
         'events': events,
     }
