@@ -47,12 +47,14 @@
             display: block !important;
         }
 
-        /* Ministries menu: full width of navbar container */
+        /* Ministries menu: full viewport width, never clipped */
         .dropdown-menu.mega-menu.ministries-menu {
+            position: fixed !important;
             left: 0 !important;
             right: 0 !important;
+            width: 100vw !important;
             min-width: 0;
-            width: 100%;
+            top: auto !important;
         }
 
         /* ---- Inner grid: pure flexbox, NOT Bootstrap .row/.col ---- */
@@ -161,8 +163,11 @@
     <!-- Header / Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <span style="color: var(--sky-blue);">RVM</span> <span style="color: var(--navy-blue);">AFRICA</span>
+            <a class="navbar-brand d-flex flex-column lh-1" href="{% url 'home' %}" style="gap: 2px;">
+                <span style="font-size: 1.35rem; font-weight: 800; letter-spacing: 1px;">
+                    <span style="color: var(--sky-blue);">RVM</span> <span style="color: var(--navy-blue);">AFRICA</span>
+                </span>
+                <span style="font-size: 0.62rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy-blue); opacity: 0.65;">Ronnie &amp; Veronica Ministries Africa</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -214,7 +219,7 @@
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-map-marker-alt"></i> Our Presence
                                     </h6>
-                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Njeru Church</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> New Hope Evangelistical Church- Kirugu</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Global Partners</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Contact Locations</a>
                                 </div>
@@ -245,7 +250,7 @@
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-church"></i> Spiritual Outreach
                                     </h6>
-                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Church &amp; Crusades</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> New Hope Evangelistical Church- Kirugu</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Conferences &amp; Seminars</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Leadership Training</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Counselling</a>
@@ -257,7 +262,7 @@
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-school"></i> School
                                     </h6>
-                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Primary Education</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> New Hope foundation Primary school - Kirugu </a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Fees &amp; Enrolment Support</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> School Meals Programme</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Tailoring School</a>
@@ -270,7 +275,7 @@
                                         <i class="fas fa-seedling"></i> Economic Empowerment
                                     </h6>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Poultry Farming</a>
-                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Fish Farming</a>
+                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i>Kirugu Fish Farm</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Tailoring &amp; Crafts</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Skills Workshops</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Income Generation</a>
@@ -295,26 +300,59 @@
     <!-- Main Footer -->
     <footer class="main-footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-4">
+            <div class="row g-4">
+
+                <!-- About -->
+                <div class="col-md-3 mb-2">
                     <h5 class="footer-title">About Us</h5>
                     <p>A holistic ministry dedicated to spiritual growth and community empowerment in East Africa.</p>
                 </div>
-                <div class="col-md-3 mb-4">
+
+                <!-- Location details -->
+                <div class="col-md-3 mb-2">
                     <h5 class="footer-title">Location</h5>
-                    <p>Njeru, Kayunga Road<br>Uganda</p>
+                    <p style="line-height: 1.9;">
+                        <i class="fas fa-map-marker-alt me-2" style="color: var(--sky-blue);"></i><strong>Kirugu</strong><br>
+                        <i class="fas fa-map-pin me-2" style="color: var(--sky-blue); opacity:0.6;"></i>Nakalanga Parish<br>
+                        <i class="fas fa-map-pin me-2" style="color: var(--sky-blue); opacity:0.6;"></i>Wakisi Sub-county<br>
+                        <i class="fas fa-map-pin me-2" style="color: var(--sky-blue); opacity:0.6;"></i>Buikwe District, Uganda
+                    </p>
                 </div>
-                <div class="col-md-3 mb-4">
+
+                <!-- Contact -->
+                <div class="col-md-3 mb-2">
                     <h5 class="footer-title">Contact</h5>
-                    <p>Email: info@rvmafrica.org<br>Phone: (+256) 7XX XXX XXX</p>
-                </div>
-                <div class="col-md-3 mb-4 text-md-end">
-                    <h5 class="footer-title">Follow Us</h5>
-                    <div class="d-flex justify-content-md-end gap-3">
+                    <p style="line-height: 2;">
+                        <i class="fas fa-envelope me-2" style="color: var(--sky-blue);"></i>info@rvmafrica.org<br>
+                        <i class="fas fa-phone me-2" style="color: var(--sky-blue);"></i>+256 772 196 468
+                    </p>
+                    <h5 class="footer-title mt-3">Follow Us</h5>
+                    <div class="d-flex gap-3">
                         <a href="#" class="text-white fs-4"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="text-white fs-4"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+
+                <!-- Map -->
+                <div class="col-md-3 mb-2">
+                    <h5 class="footer-title">Find Us</h5>
+                    <div style="border-radius: 8px; overflow: hidden; border: 2px solid rgba(255,255,255,0.15);">
+                        <iframe
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=32.9700%2C0.2800%2C33.0800%2C0.3900&layer=mapnik&marker=0.3350%2C33.0250"
+                            width="100%"
+                            height="180"
+                            style="border:0; display:block;"
+                            loading="lazy"
+                            title="Kirugu, Nakalanga, Wakisi, Buikwe — RVM Africa">
+                        </iframe>
+                    </div>
+                    <a href="https://www.openstreetmap.org/?mlat=0.3350&mlon=33.0250#map=13/0.3350/33.0250"
+                       target="_blank"
+                       style="font-size: 0.75rem; color: var(--sky-blue); text-decoration: none; display:inline-block; margin-top: 6px;">
+                        <i class="fas fa-external-link-alt me-1"></i> View larger map
+                    </a>
+                </div>
+
             </div>
         </div>
     </footer>
@@ -329,14 +367,14 @@
                     <a href="#">MINISTRIES</a>
                 </div>
                 <div class="col-md-4 text-md-end">
-                    &copy; 2024 Ronnie and Vero Ministries Africa
+                    &copy; 2025 Ronnie and Vero Ministries Africa
                 </div>
             </div>
         </div>
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/256XXXXXXXXX" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/256772196468" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
