@@ -88,7 +88,7 @@ body {
 }
 
 .carousel-caption h1, .carousel-caption p {
-    color: var(--sky-blue) !important; /* Set the main color to Sky Blue */
+    color: var(--white) !important; /* Set the main color to Sky Blue */
     font-weight: 800;
     text-shadow: 2px 4px 10px rgba(0,0,0,0.3); /* Soft shadow for depth */
 }
