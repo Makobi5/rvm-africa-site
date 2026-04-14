@@ -2,15 +2,13 @@ from django.shortcuts import render
 from .models import Ministry, Event, HeroSlide
 
 def home(request):
-    slides = HeroSlide.objects.filter(is_active=True)
-    ministries = Ministry.objects.all()
-    events = Event.objects.all().order_by('-date')[:3]
+    slides = HeroSlide.objects.filter(is_active=True).order_by('order')
+    # Fetch ministries for the horizontal scroller
+    featured_ministries = Ministry.objects.filter(show_on_slider=True)
     
-    context = {
+    return render(request, 'index.html', {
         'slides': slides,
-        'ministries': ministries,
-        'events': events,
-    }
-    return render(request, 'index.html', context)
+        'featured_ministries': featured_ministries,
+    })
 def about(request):
     return render(request, 'about.html')

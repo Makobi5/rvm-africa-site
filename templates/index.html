@@ -186,31 +186,63 @@
         </div>
     </div>
 </section>
-<!-- Ministries Grid -->
-<section class="py-5" style="background-color: #fcfcfc;">
+<!-- ==========================================================
+     MINISTRIES SCROLLER SECTION
+     ========================================================== -->
+<section class="py-5 bg-white overflow-hidden">
     <div class="container py-4">
-        <div class="text-center mb-5">
-            <h6 class="text-uppercase fw-bold" style="color: var(--sky-blue);">Our Impact</h6>
-            <h2 class="display-6 fw-bold">MINISTRIES & PROJECTS</h2>
-            <div class="mx-auto mt-2" style="width: 50px; height: 3px; background-color: var(--dim-red);"></div>
+        
+        <!-- Freedom Chapel Style Section Title -->
+        <div class="section-divider mb-5">
+            <span>MINISTRIES & PROJECTS</span>
         </div>
-        <div class="row g-4">
-            {% for ministry in ministries %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card card-ministry shadow-sm h-100 border-0 rounded-0">
-                    {% if ministry.image %}
-                        <img src="{{ ministry.image.url }}" class="card-img-top rounded-0" style="height: 240px; object-fit: cover;">
-                    {% endif %}
-                    <div class="card-body p-4">
-                        <span class="badge mb-2 px-3 py-2 text-uppercase" style="background-color: var(--sky-blue);">{{ ministry.category.name }}</span>
-                        <h4 class="fw-bold mb-3">{{ ministry.title }}</h4>
-                        <p class="text-muted small mb-4">{{ ministry.description|truncatewords:22 }}</p>
-                        <a href="#" class="text-decoration-none fw-bold" style="color: var(--dim-red);">LEARN MORE →</a>
+
+        <!-- Slider Container -->
+        <div class="swiper ministry-swiper">
+            <div class="swiper-wrapper">
+                {% for ministry in featured_ministries %}
+                <div class="swiper-slide">
+                    <div class="card ministry-scroll-card shadow-sm">
+                        <div class="card-img-container">
+                            <img src="{{ ministry.image.url }}" alt="{{ ministry.title }}">
+                        </div>
+                        <div class="card-body text-center">
+                            <!-- Title with specific class -->
+                            <h5 class="card-title fw-bold">{{ ministry.title }}</h5>
+                            
+                            <!-- Description with specific class -->
+                            <p class="card-text text-muted">
+                                {{ ministry.description|truncatechars:120 }}
+                            </p>
+                            
+                            <a href="/ministries/#{{ ministry.slug }}" class="btn btn-dim-red">
+                                LEARN MORE
+                            </a>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            <!-- Add Pagination -->
+            <div class="swiper-pagination mt-4"></div>
         </div>
     </div>
 </section>
+
+<!-- Initialize Swiper -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.ministry-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            },
+            autoplay: { delay: 4000 }
+        });
+    });
+</script>
 {% endblock %}
