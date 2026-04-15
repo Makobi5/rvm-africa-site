@@ -78,3 +78,23 @@ class HeroSlide(models.Model):
 
     def __str__(self):
         return self.title if self.title else f"Slide {self.id} (No Title)"
+    
+    
+class WeeklyProgram(models.Model):
+    COLOR_CHOICES = [
+        ('red', 'Dim Red'),
+        ('navy', 'Navy Blue'),
+    ]
+    
+    title = models.CharField(max_length=100) # e.g., Sunday Worship Service
+    day_and_time = models.CharField(max_length=100) # e.g., Sundays @ 10:00 AM
+    description = models.TextField(help_text="Brief description shown on hover.")
+    color = models.CharField(max_length=10, choices=COLOR_CHOICES, default='red')
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.title} - {self.day_and_time}"    

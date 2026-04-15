@@ -186,6 +186,47 @@
         </div>
     </div>
 </section>
+
+<!-- ==========================================================
+     WEEKLY PROGRAMS SECTION (Freedom Chapel Style)
+     ========================================================== -->
+<section class="py-5 bg-light">
+    <div class="container py-4">
+        <!-- Section Divider -->
+        <div class="section-divider mb-5">
+            <span>OUR WEEKLY GATHERINGS</span>
+        </div>
+
+        <div class="row g-4">
+            {% for program in programs %}
+            <div class="col-md-6 col-lg-4">
+                <div class="program-card shadow-sm {% if program.color == 'red' %}bg-program-red{% else %}bg-program-navy{% endif %}">
+                    
+                    <!-- Content Wrapper -->
+                    <div class="program-content">
+                        <!-- FRONT SIDE (Always visible initially) -->
+                        <div class="program-front">
+                            <h5 class="program-title">{{ program.title }}</h5>
+                            <p class="program-time">{{ program.day_and_time }}</p>
+                        </div>
+
+                        <!-- BACK SIDE (Hidden until hover) -->
+                        <div class="program-back">
+                            <p class="program-desc">{{ program.description }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">Program schedule coming soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 <!-- ==========================================================
      MINISTRIES SCROLLER SECTION
      ========================================================== -->
