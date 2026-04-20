@@ -1,5 +1,6 @@
 from django.db import models 
 from django.utils.text import slugify
+from django.utils import timezone
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -37,10 +38,20 @@ class Event(models.Model):
     title = models.CharField(max_length=200)
     date = models.DateTimeField()
     location = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True) # Added for detail
     image = models.ImageField(upload_to='events/', null=True, blank=True)
-    
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['date'] # Sort by date (soonest first)
+
     def __str__(self):
         return self.title
+
+    @property
+    def is_past(self):
+        return self.date < timezone.now()
+
     
 class HeroSlide(models.Model):
     title = models.CharField(

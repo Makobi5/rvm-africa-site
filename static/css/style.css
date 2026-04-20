@@ -1,16 +1,22 @@
-/* --- BRAND COLORS & TYPOGRAPHY --- */
+/* ==========================================================
+   1. BRAND COLORS & TYPOGRAPHY
+   ========================================================== */
 :root {
     --sky-blue: #00B4D8;
     --navy-blue: #003049;
     --dim-red: #8B0000;
+    --white: #ffffff;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
     color: #333;
+    overflow-x: hidden;
 }
 
-/* --- HEADER / NAVBAR --- */
+/* ==========================================================
+   2. HEADER & NAVIGATION
+   ========================================================== */
 .navbar {
     background-color: #fff;
     border-bottom: 4px solid var(--sky-blue);
@@ -27,13 +33,15 @@ body {
 
 .btn-donate {
     background-color: var(--dim-red) !important;
-    color: white !important;
+    color: var(--white) !important;
     border-radius: 0px !important;
     padding: 10px 25px !important;
     font-weight: 700;
 }
 
-/* --- DYNAMIC HERO SLIDER (Ken Burns Fix) --- */
+/* ==========================================================
+   3. HERO SLIDER & ANIMATIONS
+   ========================================================== */
 .hero-slider, .carousel-item {
     height: 75vh;
     min-height: 500px;
@@ -43,262 +51,160 @@ body {
 }
 
 .slide-image {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Sits behind the text */
+    width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    position: absolute; top: 0; left: 0; z-index: 1;
 }
 
-/* Dark overlay for readability */
 .slide-image::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(rgba(0, 48, 73, 0.6), rgba(0, 48, 73, 0.6));
-    z-index: 2; /* Sits on top of the image but behind the caption */
+    z-index: 2;
 }
 
-/* Ken Burns Animation */
-@keyframes kenburns {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.15); }
-}
-
-.carousel-item.active .slide-image {
-    animation: kenburns 8s ease-out forwards;
-}
+@keyframes kenburns { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+.carousel-item.active .slide-image { animation: kenburns 8s ease-out forwards; }
 
 .carousel-caption {
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
     z-index: 10 !important;
-    display: flex !important; /* Forces layout */
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    background: transparent !important; /* Ensure no background block hides it */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent !important;
 }
 
-.carousel-caption h1, .carousel-caption p {
-    color: var(--white) !important; /* Set the main color to Sky Blue */
-    font-weight: 800;
-    text-shadow: 2px 4px 10px rgba(0,0,0,0.3); /* Soft shadow for depth */
-}
-/* Optional: Make the second line white for a professional two-tone look */
-.carousel-caption h1 span.white-text {
-    color: #ffffff !important;
-}
+.carousel-caption h1 { color: var(--sky-blue) !important; font-weight: 800; }
+.carousel-caption h1 span.white-text { color: var(--white) !important; }
+.carousel-caption p { color: var(--white) !important; font-weight: 600; }
 
-.carousel-fade .carousel-item {
-    transition-duration: 1.2s;
-    transition-property: opacity;
-}
-
-/* --- FOUNDERS & MINISTRIES --- */
 @keyframes zoomInEntrance { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 .animate-zoom { animation: zoomInEntrance 1.2s ease-out forwards; }
 
-.founder-image-container { overflow: hidden; border-radius: 10px; box-shadow: 15px 15px 0px var(--sky-blue); display: inline-block; }
-.founder-image { transition: transform 0.6s ease; display: block; max-height: 500px; width: auto; object-fit: cover; }
-.founder-image:hover { transform: scale(1.08); }
-
-.main-footer { background-color: #1a1a1a; color: #bbb; padding: 70px 0; }
-.sub-footer { background-color: var(--dim-red); color: white; padding: 15px 0; font-size: 0.8rem; font-weight: 600; }
-.whatsapp-float { position: fixed; bottom: 25px; left: 25px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
-
-/* --- MEGA MENU --- */
-.dropdown-menu.mega-menu { display: none; position: absolute !important; top: 100% !important; background-color: var(--navy-blue) !important; border: none !important; border-top: 4px solid var(--sky-blue) !important; padding: 30px !important; width: 100%; left: 0 !important; }
-.dropdown-menu.mega-menu.show { display: block !important; }
-.mega-menu-grid { display: flex !important; flex-direction: row; }
-.mega-menu-col { flex: 1 !important; padding: 0 15px; border-left: 1px solid rgba(255,255,255,0.1); }
-.mega-menu-col:first-child { border-left: none; }
-.dropdown-column-title { color: var(--sky-blue) !important; font-size: 0.75rem !important; font-weight: 800 !important; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 8px; }
-
-/* --- SECTION DIVIDER (Text in middle of line) --- */
-.section-divider {
-    text-align: center;
-    position: relative;
-    z-index: 1;
+/* ==========================================================
+   4. EVENTS SECTION (CLEANED & FIXED)
+   ========================================================== */
+.event-col-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--sky-blue);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    display: block;
+    border-left: 4px solid var(--dim-red);
+    padding-left: 12px;
 }
 
-.section-divider::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: #ddd;
-    z-index: -1;
-}
-
-.section-divider span {
+.event-card-compact {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
     background: #fff;
-    padding: 0 20px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--navy-blue);
+    margin-bottom: 25px;
 }
 
-/* --- UNIFORM SCROLLER CARDS --- */
-.ministry-swiper {
-    padding-bottom: 50px !important; /* Space for dots */
-}
-
-.ministry-scroll-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Forces all cards in a row to be equal height */
-    border-radius: 12px;
-    border: 1px solid #eee !important;
-    transition: all 0.3s ease;
-    background: #fff;
-}
-
-.card-img-container {
-    height: 200px; /* Fixed height for all images */
+.event-img-small {
+    height: 300px; /* FIXED HEIGHT */
     width: 100%;
     overflow: hidden;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    position: relative;
 }
 
-.card-img-container img {
+.event-img-small img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures images aren't stretched */
+    object-fit: cover; /* FORCES IMAGE TO FIT BOX WITHOUT OVERFLOW */
 }
 
-.ministry-scroll-card .card-body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Makes the body fill the available space */
-    padding: 1.5rem !important;
-}
-
-.ministry-scroll-card .card-title {
-    min-height: 54px; /* Fixes height for 2 lines of text */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-    color: var(--navy-blue);
-    font-size: 1.15rem;
-}
-
-.ministry-scroll-card .card-text {
-    flex-grow: 1; /* Pushes the button to the bottom */
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.btn-dim-red {
-    margin-top: auto; 
-    align-self: center; /* Ensures the button stays centered if it's not full width */
-    background-color: var(--dim-red);
-    color: white !important;
-    
-    /* Reduced size settings */
-    font-size: 0.75rem;      /* Smaller font */
-    padding: 8px 22px;       /* Reduced height and width padding */
-    font-weight: 700;
-    
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.event-badge-live {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--dim-red);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 5px 12px;
     border-radius: 4px;
-    transition: 0.3s;
-    border: none;
+    z-index: 5;
 }
 
-.btn-dim-red:hover {
-    background-color: var(--navy-blue);
-    transform: translateY(-2px); /* Subtle lift on hover */
+.event-content-small {
+    padding: 25px;
 }
 
-/* --- WEEKLY PROGRAMS BOXES --- */
-.program-card {
-    height: 200px; /* Fixed height for uniformity */
-    border-radius: 8px;
+.past-event-item {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    padding: 30px;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    border: none;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    transition: 0.2s;
 }
 
-/* Background Colors */
+.past-event-item:hover { background-color: #f9f9f9; }
+
+.past-event-img { width: 90px; height: 65px; border-radius: 4px; object-fit: cover; }
+
+/* ==========================================================
+   5. MINISTRIES & PROGRAMS
+   ========================================================== */
+.section-divider { text-align: center; position: relative; z-index: 1; }
+.section-divider::before { content: ""; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: #ddd; z-index: -1; }
+.section-divider span { background: #fff; padding: 0 20px; font-weight: 700; letter-spacing: 2px; color: var(--navy-blue); }
+
+.program-card { height: 220px; border-radius: 8px; position: relative; overflow: hidden; cursor: pointer; border: none !important; }
 .bg-program-red { background-color: var(--dim-red) !important; }
 .bg-program-navy { background-color: var(--navy-blue) !important; }
+.program-content { height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; color: var(--white); }
+.program-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); padding: 20px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; z-index: 5; }
+.program-card:hover .program-back { opacity: 1; }
 
-.program-content {
+.ministry-scroll-card { display: flex; flex-direction: column; height: 100%; border-radius: 12px; background: #fff; border: 1px solid #eee !important; }
+.card-img-container { height: 200px; overflow: hidden; border-radius: 12px 12px 0 0; }
+.card-img-container img { width: 100%; height: 100%; object-fit: cover; }
+.btn-dim-red { background-color: var(--dim-red); color: var(--white) !important; font-size: 0.75rem; padding: 8px 22px; font-weight: 700; text-transform: uppercase; border-radius: 4px; align-self: center; margin-top: auto; }
+
+/* ==========================================================
+   6. FOOTERS & WHATSAPP
+   ========================================================== */
+.main-footer { background-color: #1a1a1a; color: #bbb; padding: 70px 0; }
+.footer-title { color: white; font-weight: 700; margin-bottom: 25px; text-transform: uppercase; }
+.sub-footer { background-color: var(--dim-red); color: var(--white); padding: 15px 0; font-size: 0.8rem; font-weight: 600; }
+.whatsapp-float { position: fixed; bottom: 25px; left: 25px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
+
+
+/* --- FOUNDERS SECTION FIX --- */
+.founder-image-container {
+    overflow: hidden;
+    border-radius: 12px;
+    /* Brand-aligned offset shadow */
+    box-shadow: 15px 15px 0px var(--sky-blue); 
+    display: inline-block;
     width: 100%;
-    text-align: center;
-    color: white;
+    max-width: 450px; /* Prevents the image from becoming too wide */
+    margin: 0 auto;
 }
 
-.program-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-
-.program-time {
-    font-size: 0.9rem;
-    font-weight: 500;
-    opacity: 0.85;
-    margin: 0;
-}
-
-/* THE HOVER EFFECT LOGIC */
-.program-back {
-    position: absolute;
-    top: 0;
-    left: 0;
+.founder-image {
+    transition: transform 0.6s ease;
+    display: block;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker on hover for readability */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0; /* Hidden by default */
-    transform: translateY(20px); /* Slight slide up effect */
-    transition: all 0.4s ease;
+    height: auto;
+    /* CRITICAL FIX: Limits the height of the vertical portrait */
+    max-height: 550px; 
+    object-fit: cover;
 }
 
-.program-desc {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    color: #fff;
-    margin: 0;
+.founder-image:hover {
+    transform: scale(1.05);
 }
 
-/* Hover State */
-.program-card:hover .program-back {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.program-card:hover .program-front {
-    opacity: 0;
-    transform: scale(0.9);
-}
-
-.program-front {
-    transition: all 0.4s ease;
+/* Ensure text doesn't look tiny/squashed */
+#who-we-are .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
 }
