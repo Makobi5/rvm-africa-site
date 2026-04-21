@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Header -->
+<section class="py-5" style="background: linear-gradient(rgba(0,48,73,0.8), rgba(0,48,73,0.8)), url('{% static 'images/hero.jpg' %}'); background-size: cover; color: white;">
+    <div class="container text-center py-5">
+        <h1 class="display-4 fw-bold">OUR EVENTS</h1>
+        <p class="lead">Join us for worship, fellowship, and community transformation.</p>
+    </div>
+</section>
+
+<div class="container py-5">
+    <!-- UPCOMING SECTION -->
+    <div class="section-divider mb-5"><span>UPCOMING EVENTS</span></div>
+    <div class="row g-4 mb-5">
+        {% for event in upcoming %}
+        <div class="col-md-6">
+            <div class="card event-card-compact shadow-sm">
+                <div class="event-img-small" style="height: 350px;">
+                    <span class="event-badge-live">UPCOMING</span>
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                </div>
+                <div class="event-content-small">
+                    <h5 class="text-info small fw-bold"><i class="fas fa-calendar-alt me-1"></i> {{ event.date|date:"l, F d, Y @ g:i A" }}</h5>
+                    <h3 class="fw-bold h4">{{ event.title }}</h3>
+                    <p class="text-muted">{{ event.description|truncatewords:30 }}</p>
+                    <a href="{% url 'event_detail' event.pk %}" class="btn btn-dim-red">VIEW EVENT DETAILS</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No upcoming events at the moment. Please check back soon!</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- PAST HIGHLIGHTS SECTION -->
+    <div class="section-divider mb-5"><span>PAST HIGHLIGHTS</span></div>
+    <div class="row g-4">
+        {% for event in past %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="{{ event.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover; opacity: 0.8;">
+                <div class="card-body">
+                    <span class="text-muted small fw-bold">{{ event.date|date:"M Y" }}</span>
+                    <h5 class="fw-bold mb-3">{{ event.title }}</h5>
+                    <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none fw-bold small text-info">SEE HIGHLIGHTS →</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

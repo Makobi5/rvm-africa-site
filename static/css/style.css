@@ -208,3 +208,21 @@ body {
     font-size: 1.15rem;
     line-height: 1.6;
 }
+
+.btn-outline-brand {
+    border: 1px solid var(--sky-blue);
+    color: var(--sky-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 8px 15px;
+    background: transparent;
+    border-radius: 0;
+    transition: 0.3s;
+}
+
+.btn-outline-brand:hover {
+    background-color: var(--sky-blue);
+    color: white;
+}
+

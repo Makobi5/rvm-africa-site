@@ -21,6 +21,16 @@ def home(request):
     return render(request, 'index.html', context)
 def about(request):
     return render(request, 'about.html')
+def events_list(request):
+    now = timezone.now()
+    # Get all active events, split by date
+    upcoming = Event.objects.filter(date__gte=now, is_active=True).order_by('date')
+    past = Event.objects.filter(date__lt=now, is_active=True).order_by('-date')
+    
+    return render(request, 'events.html', {
+        'upcoming': upcoming,
+        'past': past
+    })
 
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
