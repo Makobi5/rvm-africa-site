@@ -18,20 +18,24 @@
             <div class="carousel-caption">
                 <div class="animate-zoom">
                     
-                    {% if slide.is_news_event %}
-                        <!-- 1. NEWS / EVENT MODE: Show specific text from admin -->
-                        {% if slide.subtitle %}
-                            <span class="badge bg-info mb-3 px-3 py-2 text-uppercase" style="letter-spacing: 2px;">{{ slide.subtitle }}</span>
-                        {% endif %}
-                        <h1 class="display-3 fw-bold text-uppercase mb-3 text-white">{{ slide.title }}</h1>
-                        <p class="lead mx-auto mb-4 text-white" style="max-width: 800px; opacity: 0.95;">
-                            {{ slide.description }}
-                        </p>
-                        <a href="{{ slide.button_url }}" class="btn btn-donate px-5 py-3 shadow">
-                            {{ slide.button_text }}
-                        </a>
-
-                    {% else %}
+                        {% if slide.is_news_event %}
+                            <!-- 1. NEWS / EVENT MODE -->
+                            {% if slide.subtitle %}
+                                <span class="badge bg-info mb-3 px-3 py-2 text-uppercase" style="letter-spacing: 2px;">{{ slide.subtitle }}</span>
+                            {% endif %}
+                            
+                            <h1 class="display-3 fw-bold text-uppercase mb-3 text-white">{{ slide.title }}</h1>
+                            
+                            <!-- TRUNCATED DESCRIPTION: Only shows a summary -->
+                            <p class="lead mx-auto mb-4 text-white" style="max-width: 800px; opacity: 0.95; font-weight: 500;">
+                                {{ slide.description|truncatewords:20 }}
+                            </p>
+                            
+                            <!-- The link now points to the event detail (we will set this up next) -->
+                            <a href="{{ slide.button_url }}" class="btn btn-donate px-5 py-3 shadow">
+                                READ FULL STORY
+                            </a>
+                        {% else %}
                         <!-- 2. BRANDING MODE (DEFAULT): Show "Transforming Lives" -->
                         <h1 class="display-2 fw-bold text-uppercase mb-2 text-white" style="letter-spacing: -1px;">
                             Transforming Lives, <br>Building Communities

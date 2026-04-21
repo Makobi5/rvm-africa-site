@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import Ministry, Event, HeroSlide,WeeklyProgram,Event
 from django.utils import timezone
 def home(request):
@@ -21,3 +21,7 @@ def home(request):
     return render(request, 'index.html', context)
 def about(request):
     return render(request, 'about.html')
+
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'event_detail.html', {'event': event})
