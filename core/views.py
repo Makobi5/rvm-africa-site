@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Ministry, Event, HeroSlide,WeeklyProgram,Event
+from .models import Ministry, Event, HeroSlide,WeeklyProgram,Event,Leader
 from django.utils import timezone
+
 def home(request):
     slides = HeroSlide.objects.filter(is_active=True).order_by('order')
     featured_ministries = Ministry.objects.filter(show_on_slider=True)
@@ -20,7 +21,9 @@ def home(request):
     }
     return render(request, 'index.html', context)
 def about(request):
-    return render(request, 'about.html')
+    # We can fetch leaders here to show them at the bottom of the About page
+    leaders = Leader.objects.all()
+    return render(request, 'about.html', {'leaders': leaders})
 def events_list(request):
     now = timezone.now()
     # Get all active events, split by date
@@ -35,3 +38,16 @@ def events_list(request):
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
     return render(request, 'event_detail.html', {'event': event})
+
+def leadership(request):
+    leaders = Leader.objects.all()
+    return render(request, 'about/leadership.html', {'leaders': leaders})
+
+def story_vision(request):
+    return render(request, 'about/story_vision.html')
+
+def founders_bio(request):
+    return render(request, 'about/founders.html')
+
+def faith_statement(request):
+    return render(request, 'about/faith.html')

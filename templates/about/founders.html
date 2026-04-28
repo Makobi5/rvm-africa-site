@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="py-5 bg-white">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5 text-center">
+                <div class="founder-image-container">
+                    <img src="{% static 'images/founders.jpg' %}" class="founder-image shadow-lg">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <h6 class="text-info fw-bold text-uppercase">The Founders</h6>
+                <h1 class="display-4 fw-bold mb-4" style="color: var(--navy-blue);">Rev. Ronnie & Veronica Baraza</h1>
+                <div class="lead mb-4">
+                    "Our mission was born from a calling to see Africa transformed by the power of the Gospel and the dignity of self-reliance."
+                </div>
+                <p>Rev. Ronnie and Veronica Baraza have dedicated their lives to ministry in Uganda. Their journey began with a vision to reach the most vulnerable, not just with words, but with a holistic hand of support.</p>
+                <p>Rev. Ronnie, known for his evangelistic fire and leadership in <strong>New Hope Evangelistical Church</strong>, works alongside Veronica to manage their various outreaches—from the poultry farms that feed the community to the school that educates the next generation of leaders.</p>
+                <a href="https://wa.me/256772196468" class="btn btn-dim-red px-5 py-3">CONNECT WITH THE FOUNDERS</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

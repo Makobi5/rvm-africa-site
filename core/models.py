@@ -109,3 +109,31 @@ class WeeklyProgram(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.day_and_time}"    
+    
+class Leader(models.Model):
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100) # e.g., Senior Pastor, Head of Farming
+    image = models.ImageField(upload_to='leaders/')
+    bio = models.TextField(blank=True)
+    order = models.PositiveIntegerField(default=0) # To decide who shows first
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.name} - {self.position}"   
+    
+class PageHeader(models.Model):
+    PAGE_CHOICES = [
+        ('about', 'About Us Page'),
+        ('leadership', 'Leadership Page'),
+        ('events', 'Events Page'),
+        ('contact', 'Contact Page'),
+    ]
+    page = models.CharField(max_length=50, choices=PAGE_CHOICES, unique=True)
+    image = models.ImageField(upload_to='headers/')
+    title = models.CharField(max_length=200, help_text="The big title shown on the image")
+    subtitle = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return f"Header for {self.get_page_display()}"     

@@ -266,3 +266,54 @@ body {
     color: var(--navy-blue) !important;
     font-weight: 700;
 }
+
+/* --- IMPROVED INNER PAGE HEADER --- */
+.inner-page-header {
+    position: relative;
+    padding: 100px 0 60px 0; /* Increased padding for better height */
+    background-color: var(--navy-blue);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* The Dark Tint Overlay */
+.inner-page-header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darkens the image for text clarity */
+    z-index: 1;
+}
+
+/* Ensure the text is on TOP of the overlay and is WHITE */
+.inner-page-header .container {
+    position: relative;
+    z-index: 2; /* Sits above the z-index 1 overlay */
+    color: #ffffff !important;
+}
+
+.inner-page-header h1 {
+    color: #ffffff !important; /* Force white text */
+    font-size: 3.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Shadow makes it pop */
+}
+
+.inner-page-header p {
+    color: #ffffff !important; /* Force white text */
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}

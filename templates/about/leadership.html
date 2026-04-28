@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- DYNAMIC HEADER -->
+<section class="inner-page-header" 
+    style="background-image: url('{% if headers.leadership %}{{ headers.leadership.image.url }}{% else %}{% static 'images/hero.jpg' %}{% endif %}');">
+    <div class="container text-white"> 
+    <div class="container">
+        <div class="animate-zoom">
+            <h1>{{ headers.leadership.title|default:"Our Leadership" }}</h1>
+            <p>{{ headers.leadership.subtitle|default:"The dedicated team serving RVM Africa." }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            {% for leader in leaders %}
+            <div class="col-md-4 col-lg-3 text-center">
+                <div class="card border-0 shadow-sm h-100 p-3">
+                    <img src="{{ leader.image.url }}" class="rounded-circle mb-3 mx-auto shadow" style="width: 180px; height: 180px; object-fit: cover; border: 4px solid var(--sky-blue);">
+                    <h5 class="fw-bold mb-1">{{ leader.name }}</h5>
+                    <p class="text-info small fw-bold mb-3">{{ leader.position }}</p>
+                    <p class="small text-muted">{{ leader.bio }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

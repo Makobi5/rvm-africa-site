@@ -1,6 +1,109 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Our Mission | RVM Africa{% endblock %}
+
 {% block content %}
-<div class="container py-5">
-    <h1>About Ronnie and Vero Ministries Africa</h1>
-</div>
+<!-- DYNAMIC HEADER -->
+<section class="inner-page-header" 
+    style="background-image: url('{% if headers.about %}{{ headers.about.image.url }}{% else %}{% static 'images/hero.jpg' %}{% endif %}');">
+    <div class="container text-white"> 
+    <div class="container">
+        <div class="animate-zoom">
+            <h1>{{ headers.about.title|default:"Our Story & Vision" }}</h1>
+            <p>{{ headers.about.subtitle|default:"Winning souls and empowering communities." }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- MISSION & VISION (Image 2 Style) -->
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <div class="p-4 border-start border-4 border-info h-100 shadow-sm">
+                    <h2 class="fw-bold mb-3" style="color: var(--navy-blue);">Our Mission</h2>
+                    <p class="lead" style="font-size: 1.1rem; line-height: 1.7;">To train young people into Christlikeness and empower communities through holistic ministry involving spiritual growth, education, and sustainable economic projects.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-4 border-start border-4 border-primary h-100 shadow-sm" style="border-color: var(--sky-blue) !important;">
+                    <h2 class="fw-bold mb-3" style="color: var(--sky-blue);">Our Vision</h2>
+                    <p class="lead" style="font-size: 1.1rem; line-height: 1.7;">A thriving Africa where every child has access to education, every community is spiritually rooted in Christ, and every family is economically empowered to be self-sustaining.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PILLARS OF IMPACT (Adding "Interesting" Info) -->
+<section class="py-5 bg-light border-top border-bottom">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-uppercase fw-bold text-info">A Holistic Approach</h6>
+            <h2 class="display-5 fw-bold" style="color: var(--navy-blue);">How We Work</h2>
+        </div>
+        
+        <div class="row g-4 text-center">
+            <!-- Spiritual -->
+            <div class="col-md-4">
+                <div class="bg-white p-5 shadow-sm rounded h-100 transition-hover">
+                    <i class="fas fa-church fa-3x mb-4" style="color: var(--sky-blue);"></i>
+                    <h4 class="fw-bold">Spiritual Roots</h4>
+                    <p class="text-muted small">Centered at New Hope Evangelistical Church, we lead crusades and leadership seminars to win souls and build faith foundations.</p>
+                </div>
+            </div>
+            <!-- Social -->
+            <div class="col-md-4">
+                <div class="bg-white p-5 shadow-sm rounded h-100 transition-hover">
+                    <i class="fas fa-graduation-cap fa-3x mb-4" style="color: var(--dim-red);"></i>
+                    <h4 class="fw-bold">Child Welfare</h4>
+                    <p class="text-muted small">Through the New Hope Foundation School, we provide tuition, medical care, and daily meals to vulnerable children in Kirugu.</p>
+                </div>
+            </div>
+            <!-- Economic -->
+            <div class="col-md-4">
+                <div class="bg-white p-5 shadow-sm rounded h-100 transition-hover">
+                    <i class="fas fa-seedling fa-3x mb-4" style="color: var(--navy-blue);"></i>
+                    <h4 class="fw-bold">Economic Growth</h4>
+                    <p class="text-muted small">Our Fish Farm and Poultry projects aren't just for food; they are training grounds for community members to learn sustainable skills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- THE JOURNEY (Image 2 Narrative) -->
+<section class="py-5 bg-white">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="display-5 fw-bold mb-4" style="color: var(--navy-blue);">The Journey</h2>
+                <div class="pe-lg-5">
+                    <p class="mb-4">Founded by Rev. Ronnie and Veronica Baraza, RVM Africa began with a simple but heavy burden: the sight of orphaned children and struggling families in the Nakalanga Parish.</p>
+                    <p class="mb-4">What started as a small gathering under a tree has grown into a multi-faceted mission. Today, we stand as a lighthouse in Kirugu, blending the fire of evangelism with the practical dignity of vocational training and agricultural development.</p>
+                    <p class="fst-italic text-muted">"We believe a skilled hand is an empowered heart. Transformation must be total—body, mind, and spirit."</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- A photo of the church or school early days would be great here -->
+                <div class="rounded shadow-lg overflow-hidden">
+                    <img src="{% static 'images/founders.jpg' %}" class="img-fluid" alt="Founders Story">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="py-5 text-white text-center" style="background-color: var(--navy-blue);">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Be Part of the Story</h2>
+        <p class="lead mb-5">Whether through prayer, volunteering, or giving, your partnership changes lives in Kirugu.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="btn btn-donate px-5 py-3 shadow">DONATE NOW</a>
+            <a href="https://wa.me/256772196468" class="btn btn-outline-light px-5 py-3">TALK TO US</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
