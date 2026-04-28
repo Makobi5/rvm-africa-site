@@ -226,3 +226,43 @@ body {
     color: white;
 }
 
+/* --- IMPROVED EVENT DETAIL PAGE --- */
+
+.event-hero {
+    padding: 100px 0;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-poster-frame {
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.event-poster-frame:hover {
+    transform: rotate(-1deg) scale(1.02);
+}
+
+.event-text-body {
+    white-space: pre-line; /* Respects paragraphs from Admin */
+}
+
+/* Round social buttons */
+.rounded-circle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Background fallback for badges */
+.bg-sky-blue {
+    background-color: var(--sky-blue) !important;
+    color: var(--navy-blue) !important;
+    font-weight: 700;
+}
