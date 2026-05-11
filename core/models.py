@@ -16,6 +16,12 @@ class Ministry(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.TextField()
+    custom_link = models.CharField(
+        max_length=500, 
+        blank=True, 
+        null=True, 
+        help_text="Optional: Direct this button to a specific page (e.g., /church-kirugu/)"
+    )
     # ADD null=True, blank=True BACK HERE:
     image = models.ImageField(upload_to='ministries/', null=True, blank=True) 
     
@@ -112,16 +118,18 @@ class WeeklyProgram(models.Model):
     
 class Leader(models.Model):
     name = models.CharField(max_length=100)
-    position = models.CharField(max_length=100) # e.g., Senior Pastor, Head of Farming
-    image = models.ImageField(upload_to='leaders/')
-    bio = models.TextField(blank=True)
-    order = models.PositiveIntegerField(default=0) # To decide who shows first
+    position = models.CharField(max_length=100)
+    # Made image optional
+    image = models.ImageField(upload_to='leaders/', null=True, blank=True)
+    # Bio is already optional, but adding null=True for consistency
+    bio = models.TextField(blank=True, null=True) 
+    order = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['order']
 
     def __str__(self):
-        return f"{self.name} - {self.position}"   
+        return f"{self.name} - {self.position}"  
     
 class PageHeader(models.Model):
     PAGE_CHOICES = [

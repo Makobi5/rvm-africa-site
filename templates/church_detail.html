@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}New Hope Evangelistical Church - Kirugu | RVM Africa{% endblock %}
+
+{% block content %}
+<!-- IMMERSIVE HEADER (Image 3 Style) -->
+<section class="inner-page-header" style="background-image: url('{% if headers.leadership %}{{ headers.leadership.image.url }}{% else %}{% static 'images/hero.jpg' %}{% endif %}');">
+    <div class="container">
+        <div class="animate-zoom">
+            <h1 class="display-1 fw-bold text-white shadow-text" style="font-size: 5rem; letter-spacing: 5px;">New Hope Evangelistical Church - Kirugu</h1>
+        </div>
+    </div>
+</section>
+
+<!-- FAITH INTO ACTION (Image 4 Style) -->
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="fw-bold mb-4" style="color: var(--navy-blue);">Faith Into Action</h2>
+                <p class="lead mb-4">Welcome to New Hope Evangelistical Church — Kirugu, a Christ-centered, Bible-teaching fellowship committed to proclaiming Jesus faithfully and equipping believers to live out their faith daily.</p>
+                <p>We are devoted to teaching the Word of God clearly, systematically, and practically — helping individuals and families grow strong in truth and grounded in Scripture.</p>
+
+                <h3 class="fw-bold mt-5 mb-4" style="color: var(--navy-blue);">Our Mission in Kirugu</h3>
+                <p>At New Hope Evangelistical Church, we are committed to:</p>
+                <ul class="list-unstyled ms-3">
+                    <li class="mb-2"><i class="fas fa-check text-info me-2"></i> Teaching the Bible book by book, chapter by chapter, and verse by verse.</li>
+                    <li class="mb-2"><i class="fas fa-check text-info me-2"></i> Making disciples of Jesus Christ.</li>
+                    <li class="mb-2"><i class="fas fa-check text-info me-2"></i> Raising strong families rooted in biblical truth.</li>
+                    <li class="mb-2"><i class="fas fa-check text-info me-2"></i> Equipping believers to serve their community.</li>
+                    <li class="mb-2"><i class="fas fa-check text-info me-2"></i> Proclaiming the Gospel with boldness and clarity.</li>
+                </ul>
+                <p class="fst-italic mt-4 border-start border-4 border-primary ps-3">We believe faith is not passive — it moves. Faith must be lived.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WEEKLY GATHERINGS (Dynamic from Admin) -->
+<section class="py-5 bg-light border-top">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-5" style="color: var(--navy-blue);">Weekly Church Gatherings</h2>
+        <div class="row g-4">
+            {% for program in programs %}
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 bg-white shadow-sm rounded h-100 border-top border-4 {% if program.color == 'red' %}border-danger{% else %}border-primary{% endif %}">
+                    <h5 class="fw-bold mb-1">{{ program.title }}</h5>
+                    <p class="text-info small fw-bold mb-3">{{ program.day_and_time }}</p>
+                    <p class="small text-muted">{{ program.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- OUTREACH MINISTRIES (Image 5 Style) -->
+<section class="py-5 bg-white border-top">
+    <div class="container py-4">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <h3 class="fw-bold mb-4" style="color: var(--navy-blue);">School Devotions & Chapel</h3>
+                <p>We are actively investing in the next generation through the New Hope Foundation Primary School. We bring biblical teaching, character development, and Gospel clarity directly into the classrooms through:</p>
+                <ul class="small text-muted">
+                    <li>Morning devotions and Midday chapel services.</li>
+                    <li>Scripture memory programs.</li>
+                    <li>Teacher discipleship and training.</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="fw-bold mb-4" style="color: var(--navy-blue);">Medical & Social Outreach</h3>
+                <p>Following Christ's example of compassion, we visit the sick and support vulnerable families in Kirugu every week. We provide pastoral care, share Scripture, and offer tangible support through meals and medical welfare.</p>
+                <div class="bg-light p-3 border-start border-4 border-info">
+                    <p class="mb-0 small fw-bold text-navy">"I was sick and you visited me..." — Matthew 25:36</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CALL (Image 6 Style) -->
+<section class="py-5 bg-navy text-white text-center" style="background-color: var(--navy-blue);">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4">Join Us in Kirugu</h2>
+        <p class="lead mb-5 mx-auto" style="max-width: 800px;">Whether you are looking for a church home, a place for your children to grow, or a deeper understanding of Scripture, we invite you to worship and grow with us.</p>
+        <a href="https://wa.me/256772196468?text=Hello, I would like to visit the church in Kirugu" class="btn btn-dim-red px-5 py-3 shadow">GET DIRECTIONS & TIMES</a>
+    </div>
+</section>
+{% endblock %}

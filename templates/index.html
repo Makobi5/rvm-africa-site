@@ -319,20 +319,28 @@
             <div class="swiper-wrapper">
                 {% for ministry in featured_ministries %}
                 <div class="swiper-slide">
+                    <!-- Inside the Swiper Slide loop -->
                     <div class="card ministry-scroll-card shadow-sm">
-                        <div class="card-img-container">
-                            <img src="{{ ministry.image.url }}" alt="{{ ministry.title }}">
-                        </div>
+                        
+                        <!-- WRAP THE IMAGE IN A LINK -->
+                        <a href="{% if ministry.custom_link %}{{ ministry.custom_link }}{% else %}/ministries/#{{ ministry.slug }}{% endif %}" class="card-img-link">
+                            <div class="card-img-container">
+                                {% if ministry.image %}
+                                    <img src="{{ ministry.image.url }}" alt="{{ ministry.title }}">
+                                {% else %}
+                                    <div class="bg-light d-flex align-items-center justify-content-center h-100">
+                                        <i class="fas fa-image fa-2x text-muted opacity-25"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </a>
+
                         <div class="card-body text-center">
-                            <!-- Title with specific class -->
                             <h5 class="card-title fw-bold">{{ ministry.title }}</h5>
+                            <p class="card-text text-muted">{{ ministry.description|truncatechars:120 }}</p>
                             
-                            <!-- Description with specific class -->
-                            <p class="card-text text-muted">
-                                {{ ministry.description|truncatechars:120 }}
-                            </p>
-                            
-                            <a href="/ministries/#{{ ministry.slug }}" class="btn btn-dim-red">
+                            <!-- Keep the button as is -->
+                            <a href="{% if ministry.custom_link %}{{ ministry.custom_link }}{% else %}/ministries/#{{ ministry.slug }}{% endif %}" class="btn btn-dim-red">
                                 LEARN MORE
                             </a>
                         </div>

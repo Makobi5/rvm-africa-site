@@ -51,3 +51,7 @@ def founders_bio(request):
 
 def faith_statement(request):
     return render(request, 'about/faith.html')
+def church_detail(request):
+    # Fetch programs to show in the "Weekly Gatherings" section
+    programs = WeeklyProgram.objects.filter(is_active=True).order_by('order')
+    return render(request, 'church_detail.html', {'programs': programs})
