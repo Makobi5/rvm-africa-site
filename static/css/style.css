@@ -337,3 +337,20 @@ body {
 .card-img-link:hover {
     cursor: pointer;
 }
+
+/* --- SERVICE TIMES BANNER --- */
+.service-times-banner {
+    /* Replace with a subtle background image if you have one, or use this clean gradient */
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                url('https://www.transparenttextures.com/patterns/cubes.png');
+    border-bottom: 1px solid #eee;
+}
+
+.shadow-text {
+    text-shadow: 2px 4px 15px rgba(0,0,0,0.6);
+}
+
+.transition-hover:hover {
+    transform: translateY(-10px);
+    transition: 0.3s;
+}
