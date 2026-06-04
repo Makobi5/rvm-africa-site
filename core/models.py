@@ -144,4 +144,16 @@ class PageHeader(models.Model):
     subtitle = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return f"Header for {self.get_page_display()}"     
+        return f"Header for {self.get_page_display()}"    
+class MinistryHighlight(models.Model):
+    ministry = models.ForeignKey(Ministry, on_delete=models.CASCADE, related_name='highlights')
+    image = models.ImageField(upload_to='ministry_highlights/')
+    title = models.CharField(max_length=200) # e.g., "Unity in Praise"
+    description = models.TextField()
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.ministry.title} - {self.title}"     

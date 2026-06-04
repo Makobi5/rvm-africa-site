@@ -11,4 +11,5 @@ urlpatterns = [
     path('founders/', views.founders_bio, name='founders'),
     path('faith/', views.faith_statement, name='faith'),
     path('church-kirugu/', views.church_detail, name='church_detail'),
+    path('annual-worship-night/', views.worship_night, name='worship_night'),
 ]

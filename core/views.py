@@ -55,3 +55,16 @@ def church_detail(request):
     # Fetch programs to show in the "Weekly Gatherings" section
     programs = WeeklyProgram.objects.filter(is_active=True).order_by('order')
     return render(request, 'church_detail.html', {'programs': programs})
+def worship_night(request):
+    return render(request, 'ministries/annual_worship_night.html')
+
+def worship_night(request):
+    # Fetch the specific ministry by slug
+    # Ensure you have set the slug to 'annual-worship-night' in the admin!
+    ministry = get_object_or_404(Ministry, slug='annual-worship-night')
+    highlights = ministry.highlights.all()
+    
+    return render(request, 'ministries/annual_worship_night.html', {
+        'ministry': ministry,
+        'highlights': highlights
+    })

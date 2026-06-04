@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Annual Worship Night | RVM Africa{% endblock %}
+
+{% block content %}
+<!-- 1. IMMERSIVE HERO HEADER -->
+<section class="inner-page-header" style="background-image: url('{% static 'images/worship2.jpg' %}');">
+    <div class="container">
+        <div class="animate-zoom text-center">
+            <h1 class="display-3 fw-bold text-white">ANNUAL WORSHIP NIGHT</h1>
+            <p class="text-white lead fw-bold text-uppercase" style="letter-spacing: 3px;">An 11-Hour Encounter with God</p>
+            <div class="mx-auto mt-3" style="width: 80px; height: 4px; background-color: var(--sky-blue);"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. THE THEME & OVERVIEW -->
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-7">
+                <h6 class="text-info fw-bold text-uppercase mb-3" style="letter-spacing: 2px;">Spiritual Milestone</h6>
+                <h2 class="display-5 fw-bold mb-4" style="color: var(--navy-blue);">The Great Call</h2>
+                <p class="lead mb-4" style="line-height: 1.8;">
+                    The Annual Worship Night is the signature spiritual event of Ronnie and Vero Ministries Africa. 
+                    From 6:00 PM Friday to 5:00 AM Saturday, we gather to seek the source of all life.
+                </p>
+                
+                <div class="p-4 bg-light border-start border-4 border-danger rounded shadow-sm mb-4">
+                    <h5 class="fw-bold mb-2">
+                        <i class="fas fa-fire me-2 text-danger"></i> This year's theme: 
+                        <span class="text-danger">"SEEK THE LORD AND LIVE"</span>
+                    </h5>
+                    <p class="small text-muted mb-0">Directly from the mandate of the prophet in Amos 5:4.</p>
+                </div>
+
+                <div class="mb-4 d-flex align-items-center gap-3">
+                    <div class="fs-1 text-info"><i class="fas fa-scroll"></i></div>
+                    <div>
+                        <h6 class="fw-bold mb-0 text-uppercase" style="font-size: 0.75rem;">Scripture Focus</h6>
+                        <h5 class="fw-bold" style="color: var(--navy-blue);">Amos 5:4</h5>
+                        <p class="small text-muted fst-italic">"For thus says the Lord to the house of Israel: 'Seek Me and live!'"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 text-center">
+                <div class="animate-zoom">
+                    <div class="founder-image-container" style="box-shadow: 15px 15px 0px var(--sky-blue);">
+                        <img src="{% static 'images/banner.jpg' %}" class="founder-image" alt="Worship Night Banner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. DYNAMIC ATMOSPHERE & HIGHLIGHTS -->
+<section class="py-5 bg-light border-top border-bottom overflow-hidden">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-uppercase fw-bold text-info" style="letter-spacing: 2px;">The Experience</h6>
+            <h2 class="display-5 fw-bold" style="color: var(--navy-blue);">A Night of Transformation</h2>
+            <p class="text-muted">Explore the powerful moments captured in Kirugu.</p>
+        </div>
+
+        <!-- INCREASED WIDTH: Changed from 800px to 1150px -->
+        <div style="max-width: 1150px; margin: 0 auto; position: relative;" class="px-4">
+            <div class="swiper highlight-swiper pb-5">
+                <div class="swiper-wrapper">
+                    {% for highlight in highlights %}
+                    <div class="swiper-slide">
+                        <div class="highlight-premium-card">
+                            <img src="{{ highlight.image.url }}" class="highlight-bg" alt="{{ highlight.title }}">
+                            <div class="highlight-overlay"></div>
+                            <div class="highlight-content">
+                                <h3 class="fw-bold text-white mb-2">{{ highlight.title }}</h3>
+                                <p class="lead text-white-50 mb-3 highlight-summary" style="font-size: 1rem;">
+                                    {{ highlight.description|truncatewords:25 }}
+                                </p>
+                                <button type="button" class="btn btn-dim-red px-5 py-2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#modal{{ highlight.id }}">
+                                    READ FULL STORY
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Swiper Navigation Arrows -->
+                <div class="swiper-button-next text-info"></div>
+                <div class="swiper-button-prev text-info"></div>
+                
+                <!-- Pagination Dots -->
+                <div class="swiper-pagination mt-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. PURPOSE & VISION -->
+<section class="py-5 bg-white">
+    <div class="container py-4 text-center">
+        <h2 class="fw-bold mb-4" style="color: var(--navy-blue);">The Heart of the Night</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <p class="lead text-muted">
+                    In a world filled with noise, we believe the most urgent call for every believer is to <strong>Seek the Lord</strong>. 
+                    This night is designed to tear down spiritual walls, build leadership through the Word, and see a community transformed by the Holy Spirit.
+                </p>
+                
+                <div class="mt-5">
+                    <a href="https://wa.me/256772196468?text=I%20want%20to%20partner%20with%20the%20Worship%20Night%20Ministry" class="btn btn-dim-red px-5 py-3 shadow">SUPPORT THIS MINISTRY</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODALS SECTION -->
+{% for highlight in highlights %}
+<div class="modal fade" id="modal{{ highlight.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 overflow-hidden" style="border-radius: 20px;">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="{{ highlight.image.url }}" class="img-fluid h-100" style="object-fit: cover; min-height: 400px;" alt="{{ highlight.title }}">
+                </div>
+                <div class="col-md-7">
+                    <div class="modal-body p-5">
+                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h6 class="text-info fw-bold text-uppercase small mb-2">Ministry Highlight</h6>
+                        <h3 class="fw-bold mb-4" style="color: var(--navy-blue);">{{ highlight.title }}</h3>
+                        <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+                            {{ highlight.description|linebreaks }}
+                        </p>
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<!-- Swiper Initialization Logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.highlight-swiper', {
+            slidesPerView: 1, // ALWAYS SHOW ONLY ONE
+            spaceBetween: 50,
+            loop: true,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    });
+</script>
+
+<!-- Add this extra CSS specifically for the Navigation buttons -->
+<style>
+    .swiper-button-next, .swiper-button-prev {
+        background-color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}

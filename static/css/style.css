@@ -354,3 +354,46 @@ body {
     transform: translateY(-10px);
     transition: 0.3s;
 }
+
+/* --- UPDATED PREMIUM HIGHLIGHT SLIDER --- */
+.highlight-premium-card {
+    height: 500px; /* Increased slightly to balance the extra width */
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    transition: all 0.5s ease;
+}
+
+.highlight-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This is key: it fills the wider space without stretching */
+    transition: transform 1.2s ease;
+}
+
+.highlight-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 50px; /* More padding for the wider look */
+    z-index: 2;
+    transform: translateY(30px);
+    transition: transform 0.5s ease;
+}
+
+/* Make the arrows more prominent on the wider layout */
+.swiper-button-next, .swiper-button-prev {
+    top: 50% !important;
+    transform: translateY(-50%);
+}
+
+.swiper-button-next { right: -20px !important; }
+.swiper-button-prev { left: -20px !important; }
+
+@media (max-width: 768px) {
+    .highlight-premium-card { height: 400px; }
+    .highlight-content { padding: 30px 20px; }
+    .swiper-button-next, .swiper-button-prev { display: none; } /* Hide arrows on mobile */
+}
