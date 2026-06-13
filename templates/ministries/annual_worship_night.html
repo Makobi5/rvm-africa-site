@@ -98,8 +98,65 @@
         </div>
     </div>
 </section>
+<!-- 4. SERMON ARCHIVE SECTION -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h6 class="text-sky-blue fw-bold text-uppercase">Media Gallery</h6>
+            <h2 class="display-5 fw-bold" style="color: var(--navy-blue);">Worship & Word Archive</h2>
+            <div class="mx-auto mt-2" style="width: 50px; height: 3px; background-color: var(--dim-red);"></div>
+        </div>
 
-<!-- 4. PURPOSE & VISION -->
+        <div class="row g-4 sermon-archive-container shadow-sm">
+            <!-- LEFT: FEATURED VIDEO -->
+            <div class="col-lg-8">
+                {% if featured_video %}
+                <a href="{{ featured_video.youtube_url }}" target="_blank" class="featured-video-box d-block">
+                    <span class="video-label-top">RVM AFRICA MEDIA</span>
+                    <img src="{{ featured_video.thumbnail_url }}" class="featured-thumbnail" alt="Featured Sermon">
+                    
+                    <div class="play-btn-circle">
+                        <i class="fas fa-play ms-1"></i>
+                    </div>
+
+                    <div class="video-bottom-title">
+                        <h4 class="text-white fw-bold mb-0" style="font-size: 1.1rem;">{{ featured_video.title }}</h4>
+                        <span class="text-white-50 small">Click to watch the full recording</span>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- RIGHT: RECENT MESSAGES LIST -->
+            <div class="col-lg-4">
+                <div class="recent-messages-sidebar shadow-sm">
+                    <h5 class="fw-bold mb-4" style="color: #4B1D96;">Recent Highlights</h5>
+                    
+                    {% for video in recent_videos %}
+                    <a href="{{ video.youtube_url }}" target="_blank" class="recent-video-item">
+                        <img src="{{ video.thumbnail_url }}" class="sidebar-thumb" alt="video thumbnail">
+                        <div>
+                            <p class="recent-title">{{ video.title|truncatechars:45 }}</p>
+                            <span class="text-muted" style="font-size: 0.75rem;">View on YouTube</span>
+                        </div>
+                    </a>
+                    {% empty %}
+                    <p class="text-muted small">No other videos available yet.</p>
+                    {% endfor %}
+
+                    <div class="mt-4 pt-3 border-top text-center">
+                        <a href="https://www.youtube.com/@NewHopeMinistriesKirugu" target="_blank" class="btn btn-sm btn-dim-red w-100 rounded-pill">
+                            VISIT OUR CHANNEL
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- 5. PURPOSE & VISION -->
 <section class="py-5 bg-white">
     <div class="container py-4 text-center">
         <h2 class="fw-bold mb-4" style="color: var(--navy-blue);">The Heart of the Night</h2>
@@ -164,6 +221,18 @@
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
+            },
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.video-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: { delay: 7000 },
+            navigation: {
+                nextEl: '.video-next',
+                prevEl: '.video-prev',
             },
         });
     });

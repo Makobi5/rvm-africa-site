@@ -1,6 +1,7 @@
 from django.db import models 
 from django.utils.text import slugify
 from django.utils import timezone
+import re
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -156,4 +157,36 @@ class MinistryHighlight(models.Model):
         ordering = ['order']
 
     def __str__(self):
-        return f"{self.ministry.title} - {self.title}"     
+        return f"{self.ministry.title} - {self.title}"
+class MinistryVideo(models.Model):
+    ministry = models.ForeignKey(Ministry, on_delete=models.CASCADE, related_name='videos')
+    title = models.CharField(max_length=255)
+    youtube_url = models.URLField(help_text="Paste the full YouTube URL (e.g., https://www.youtube.com/watch?v=xyz)")
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.ministry.title} - {self.title}"
+
+    @property
+    def embed_url(self):
+        """Logic to convert a standard watch link into an embeddable link"""
+        regex = r"(?:v=|\/)([0-9A-Za-z_-]{11}).*"
+        match = re.search(regex, self.youtube_url)
+        if match:
+            video_id = match.group(1)
+            return f"https://www.youtube.com/embed/{video_id}"
+        return self.youtube_url         
+    @property
+    def youtube_id(self):
+        regex = r"(?:v=|\/)([0-9A-Za-z_-]{11}).*"
+        match = re.search(regex, self.youtube_url)
+        return match.group(1) if match else None
+
+    @property
+    def thumbnail_url(self):
+        if self.youtube_id:
+            return f"https://img.youtube.com/vi/{self.youtube_id}/maxresdefault.jpg"
+        return ""

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}New Hope Foundation Primary School | RVM Africa{% endblock %}
+
+{% block content %}
+<!-- 1. IMMERSIVE HEADER -->
+<section class="inner-page-header" style="background-image: url('{% static 'images/school1.jpg' %}');">
+    <div class="container">
+        <div class="animate-zoom text-center">
+            <h1 class="display-3 fw-bold text-white shadow-text">OUR SCHOOL</h1>
+            <p class="text-white lead fw-bold text-uppercase" style="letter-spacing: 2px;">Nurturing Minds, Building Foundations</p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. MISSION & PHILOSOPHY -->
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <h6 class="text-uppercase fw-bold mb-3" style="color: var(--sky-blue); letter-spacing: 2px;">Education with Purpose</h6>
+                <h2 class="display-5 fw-bold mb-4" style="color: var(--navy-blue);">Academic Excellence & Spiritual Foundation</h2>
+                <p class="lead mb-4">New Hope Foundation Primary School - Kirugu is more than just a place of learning; it is a center for transformation. We provide quality and affordable education designed to equip learners with skills for a dynamic world.</p>
+                
+                <p>Guided by our motto, <strong>"The Lord is My Shepherd,"</strong> we believe that true education addresses both the mind and the spirit. We are committed to:</p>
+                
+                <ul class="list-unstyled ms-2 mt-4">
+                    <li class="mb-3 d-flex align-items-start"><i class="fas fa-check-circle text-info mt-1 me-3"></i> <span><strong>Quality Curriculum:</strong> Following the National curriculum with added emphasis on critical thinking.</span></li>
+                    <li class="mb-3 d-flex align-items-start"><i class="fas fa-check-circle text-info mt-1 me-3"></i> <span><strong>Spiritual Growth:</strong> Daily devotions and weekly chapel services for all students.</span></li>
+                    <li class="mb-3 d-flex align-items-start"><i class="fas fa-check-circle text-info mt-1 me-3"></i> <span><strong>Holistic Care:</strong> Providing nutritious school meals and medical welfare for orphaned children.</span></li>
+                </ul>
+            </div>
+            <div class="col-lg-5">
+                <div class="animate-zoom">
+                    <!-- IMAGE: Teacher helping student in classroom -->
+                    <div class="founder-image-container" style="box-shadow: -15px 15px 0px var(--sky-blue);"> 
+                        <img src="{% static 'images/teacher_classroom.jpg' %}" alt="Classroom Interaction" class="founder-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. THE "WHY" SECTION (Freedom Chapel Style) -->
+<section class="py-5 bg-light border-top border-bottom">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--navy-blue);">Why New Hope Foundation?</h2>
+            <div class="mx-auto mt-2" style="width: 50px; height: 3px; background-color: var(--dim-red);"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="p-4 bg-white shadow-sm h-100 rounded transition-hover">
+                    <i class="fas fa-apple-alt fa-3x mb-3 text-danger"></i>
+                    <h5 class="fw-bold">Nutrition Program</h5>
+                    <p class="small text-muted">We ensure every student receives daily meals, understanding that a hungry child cannot focus on their studies.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 bg-white shadow-sm h-100 rounded transition-hover">
+                    <i class="fas fa-book-reader fa-3x mb-3 text-info"></i>
+                    <h5 class="fw-bold">Skilled Instructors</h5>
+                    <p class="small text-muted">Our teachers are mentors who are dedicated to the academic success and moral growth of every learner.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 bg-white shadow-sm h-100 rounded transition-hover">
+                    <i class="fas fa-heart fa-3x mb-3 text-primary" style="color: var(--sky-blue) !important;"></i>
+                    <h5 class="fw-bold">Vulnerable Support</h5>
+                    <p class="small text-muted">We specialize in enrolling and supporting orphaned and vulnerable children through specialized tuition aid.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. BUILDING FOR THE FUTURE -->
+<section class="py-5 bg-white">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <!-- IMAGE: The main school building shot -->
+                <div class="rounded shadow-lg overflow-hidden">
+                    <img src="{% static 'images/school2.jpg' %}" class="img-fluid" alt="School Facility">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-4" style="color: var(--navy-blue);">A Community Landmark</h3>
+                <p>Located in Kirugu, our facility provides a safe, structured, and inspiring environment for children to discover their God-given potential. We are licensed (MOES ME/P/11545) and recognized as a model school for community-led development.</p>
+                <div class="mt-4 p-4 border-start border-4 border-info bg-light">
+                    <p class="mb-0 fw-bold">Vision: To be a model school in providing quality and affordable education that will equip the learners with skills and knowledge to fit in the dynamic world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. FINAL CALL TO ACTION -->
+<section class="py-5 text-white text-center" style="background-color: var(--navy-blue);">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-4">Empower a Child’s Future</h2>
+        <p class="lead mb-5 mx-auto" style="max-width: 800px;">Your partnership allows us to continue providing tuition support and meals to children who need it most. Join us in raising the next generation of Kirugu's leaders.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/256772196468?text=I%20want%20to%20know%20more%20about%20sponsoring%20a%20student" class="btn btn-dim-red px-5 py-3 shadow">SPONSOR A STUDENT</a>
+            <a href="#" class="btn btn-outline-light px-5 py-3">VIEW SCHOOL CALENDAR</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -255,6 +255,7 @@
                                         <i class="fas fa-church"></i> Spiritual Outreach
                                     </h6>
                                     <a class="mega-menu-item" href="{% url 'church_detail' %}"><i class="fas fa-angle-right"></i> New Hope Evangelistical Church- Kirugu</a>
+                                    <a class="mega-menu-item" href="{% url 'worship_night' %}"><i class="fas fa-chevron-right"></i> Annual Worship Night</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Conferences &amp; Seminars</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Leadership Training</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Counselling</a>
@@ -266,7 +267,7 @@
                                     <h6 class="dropdown-column-title">
                                         <i class="fas fa-school"></i> School
                                     </h6>
-                                    <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> New Hope foundation Primary school - Kirugu </a>
+                                    <a class="mega-menu-item" href="{% url 'school_detail' %}"><i class="fas fa-angle-right"></i> New Hope foundation Primary school - Kirugu </a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Fees &amp; Enrolment Support</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> School Meals Programme</a>
                                     <a class="mega-menu-item" href="#"><i class="fas fa-angle-right"></i> Tailoring School</a>
@@ -445,8 +446,9 @@
                         <div class="sf-item">
                             <a href="#">LOCATIONS <i class="fas fa-chevron-up sf-arrow"></i></a>
                             <div class="sf-dropdown">
-                                <a href="#"><i class="fas fa-angle-right"></i> New Hope Church — Kirugu</a>
-                                <a href="#"><i class="fas fa-angle-right"></i> New Hope Foundation School</a>
+                                <a href="% url 'church_detail' %"><i class="fas fa-angle-right"></i> New Hope Evangelistical Church — Kirugu</a>
+                                <a href="{% url 'school_detail' %}"><i class="fas fa-angle-right"></i> New Hope Foundation Primary School</a>
+                                 <a href="{% url 'worship_night' %}"><i class="fas fa-angle-right"></i> Annual Worship Night</a>
                                 <a href="#"><i class="fas fa-angle-right"></i> Kirugu Fish Farm</a>
                             </div>
                         </div>

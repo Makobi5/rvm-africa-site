@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Category, Ministry, Event,WeeklyProgram
-from .models import HeroSlide,Leader,PageHeader,MinistryHighlight 
+from .models import HeroSlide,Leader,PageHeader,MinistryHighlight,MinistryVideo 
 
 admin.site.register(Category)
 admin.site.register(Ministry)
@@ -10,3 +10,4 @@ admin.site.register(WeeklyProgram)
 admin.site.register(Leader) 
 admin.site.register(PageHeader)
 admin.site.register(MinistryHighlight)
+admin.site.register(MinistryVideo)

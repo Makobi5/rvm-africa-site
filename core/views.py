@@ -59,12 +59,21 @@ def worship_night(request):
     return render(request, 'ministries/annual_worship_night.html')
 
 def worship_night(request):
-    # Fetch the specific ministry by slug
-    # Ensure you have set the slug to 'annual-worship-night' in the admin!
     ministry = get_object_or_404(Ministry, slug='annual-worship-night')
     highlights = ministry.highlights.all()
     
+    # Fetch all videos for this ministry
+    all_videos = ministry.videos.all()
+    
+    # The first video is the 'Featured' one, the rest go in the sidebar
+    featured_video = all_videos.first() if all_videos.exists() else None
+    recent_videos = all_videos[1:5] # Shows the next 4 in the sidebar
+    
     return render(request, 'ministries/annual_worship_night.html', {
         'ministry': ministry,
-        'highlights': highlights
+        'highlights': highlights,
+        'featured_video': featured_video,
+        'recent_videos': recent_videos,
     })
+def school_detail(request):
+    return render(request, 'school_detail.html')
